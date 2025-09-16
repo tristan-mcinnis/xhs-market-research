@@ -21,7 +21,7 @@ from rich.panel import Panel
 # Add modules to path
 sys.path.append(str(Path(__file__).parent))
 
-from modules.media_downloader import MediaDownloader
+from modules.media_downloader import XHSMediaDownloader as MediaDownloader
 
 console = Console()
 
