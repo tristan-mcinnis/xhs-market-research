@@ -43,6 +43,7 @@ MOONSHOT_API_KEY="your_moonshot_key"  # For Kimi
 
 ### 3. Scrape Content
 
+#### Single Keyword (Original)
 ```bash
 # Basic usage (10 posts)
 python main.py --keyword "杜蕾斯 口味"
@@ -51,14 +52,39 @@ python main.py --keyword "杜蕾斯 口味"
 python main.py --keyword "Galenic" --posts 50
 ```
 
+#### Multiple Keywords (New)
+```bash
+# Scrape multiple keywords separately
+python scrape_multi.py "杜蕾斯" "杰士邦" "冈本" --posts 20
+
+# Scrape and combine for unified analysis
+python scrape_multi.py "杜蕾斯" "口味" "巧克力" --posts 15 --combine
+
+# Scrape related searches combined
+python scrape_multi.py "杜蕾斯 口味" "杜蕾斯 巧克力" --posts 10 --combine
+```
+
 ### 4. Analyze with Aggregate Themes
 
+#### Single Folder Analysis
 ```bash
 # Analyze latest scrape with thematic analysis
 python analyze.py --latest --themes --semiotics --openai
 
 # Full marketing analysis preset
 python analyze.py --latest --preset marketing_full --openai
+```
+
+#### Multi-Folder Cross-Analysis (New)
+```bash
+# Analyze multiple folders together interactively
+python analyze_multi.py
+
+# Analyze specific folders for cross-query insights
+python analyze_multi.py --folders "杜蕾斯" "杰士邦" --themes --brand
+
+# Analyze a combined folder
+python analyze_multi.py --folders "combined_3_keywords" --preset marketing_full
 ```
 
 ### 5. View Results
@@ -107,8 +133,34 @@ data/
 └── raw_scraper_results.json         # Raw Apify results
 ```
 
-## Example Workflow
+## Search Approaches Explained
 
+### Single Query (AND Logic)
+```bash
+python main.py --keyword "杜蕾斯 口味"
+```
+- Searches for posts containing BOTH "杜蕾斯" AND "口味"
+- Results: Posts specifically about Durex flavors
+
+### Multiple Separate Queries
+```bash
+python scrape_multi.py "杜蕾斯" "口味" "巧克力" --posts 20
+```
+- Runs 3 separate searches
+- Creates 3 folders with different results
+- Analyze each separately or together
+
+### Multiple Combined Queries
+```bash
+python scrape_multi.py "杜蕾斯" "口味" --posts 20 --combine
+```
+- Runs separate searches but combines results
+- Single folder for unified analysis
+- Good for comparing different aspects
+
+## Example Workflows
+
+### Workflow 1: Single Brand Deep Dive
 ```bash
 # 1. Scrape content about a brand
 python main.py --keyword "科兰黎" --posts 20
@@ -118,10 +170,26 @@ python analyze.py --latest --themes --semiotics --innovation --openai
 
 # 3. View formatted results
 python view_analysis.py
+```
 
-# Results saved in: data/downloaded_content/YYYYMMDD/科兰黎/
-# - aggregate_analysis.json (full data)
-# - aggregate_analysis_report.md (readable report)
+### Workflow 2: Competitive Analysis
+```bash
+# 1. Scrape multiple competitors
+python scrape_multi.py "杜蕾斯" "杰士邦" "冈本" --posts 30 --combine
+
+# 2. Run cross-brand analysis
+python analyze_multi.py --folders "杜蕾斯_杰士邦_冈本" --preset competitive --brand
+
+# 3. Results show competitive insights across brands
+```
+
+### Workflow 3: Topic Exploration
+```bash
+# 1. Scrape related topics
+python scrape_multi.py "避孕套 口味" "安全套 巧克力" "情趣用品 果味" --posts 15 --combine
+
+# 2. Analyze for market trends
+python analyze.py --keyword "combined_3_keywords" --trends --innovation
 ```
 
 ## LLM Providers
