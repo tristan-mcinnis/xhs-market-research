@@ -43,7 +43,24 @@ MOONSHOT_API_KEY="your_moonshot_key"  # For Kimi
 
 ### 3. Scrape Content
 
-#### Single Keyword (Original)
+#### 🎯 Interactive Mode (Recommended)
+```bash
+# Quick interactive search builder
+python search.py
+
+# Full-featured query builder with strategies
+python query_builder.py
+```
+
+The interactive tools will:
+- Guide you through search strategy selection
+- Help build effective queries
+- Execute the search automatically
+- Suggest next analysis steps
+
+#### Manual Mode
+
+##### Single Keyword
 ```bash
 # Basic usage (10 posts)
 python main.py --keyword "杜蕾斯 口味"
@@ -52,7 +69,7 @@ python main.py --keyword "杜蕾斯 口味"
 python main.py --keyword "Galenic" --posts 50
 ```
 
-#### Multiple Keywords (New)
+##### Multiple Keywords
 ```bash
 # Scrape multiple keywords separately
 python scrape_multi.py "杜蕾斯" "杰士邦" "冈本" --posts 20
