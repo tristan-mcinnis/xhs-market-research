@@ -83,26 +83,39 @@ python scrape_multi.py "杜蕾斯 口味" "杜蕾斯 巧克力" --posts 10 --com
 
 ### 4. Analyze with Aggregate Themes
 
-#### Single Folder Analysis
+The analysis approach depends on how you scraped:
+
+#### For Single Searches or Combined Folders
 ```bash
-# Analyze latest scrape with thematic analysis
+# If you used search.py/query_builder.py with combine, or single keyword
 python analyze.py --latest --themes --semiotics --openai
 
 # Full marketing analysis preset
 python analyze.py --latest --preset marketing_full --openai
+
+# Analyze specific combined folder
+python analyze.py --keyword "杜蕾斯_口味_巧克力" --themes --innovation
 ```
 
-#### Multi-Folder Cross-Analysis (New)
+#### For Multiple Separate Searches (Cross-Query Analysis)
 ```bash
-# Analyze multiple folders together interactively
+# Interactive selection of folders to compare
 python analyze_multi.py
 
-# Analyze specific folders for cross-query insights
+# Compare specific brands/topics
 python analyze_multi.py --folders "杜蕾斯" "杰士邦" --themes --brand
 
-# Analyze a combined folder
-python analyze_multi.py --folders "combined_3_keywords" --preset marketing_full
+# Analyze all folders from today
+python analyze_multi.py --folders all --preset competitive
 ```
+
+#### Analysis Output Locations
+
+| Search Method | Output Location |
+|--------------|-----------------|
+| Single keyword | `data/YYYYMMDD/keyword/aggregate_analysis.json` |
+| Combined (--combine) | `data/YYYYMMDD/combined_folder/aggregate_analysis.json` |
+| Multiple separate | `data/YYYYMMDD/cross_analysis_folders.json` |
 
 ### 5. View Results
 
@@ -110,8 +123,12 @@ python analyze_multi.py --folders "combined_3_keywords" --preset marketing_full
 # View formatted analysis results
 python view_analysis.py
 
-# Or check the generated reports in:
-# data/downloaded_content/YYYYMMDD/keyword/aggregate_analysis_report.md
+# View specific analysis
+python view_analysis.py --keyword "杜蕾斯"
+
+# Check markdown reports directly:
+# - Single/Combined: data/YYYYMMDD/keyword/aggregate_analysis_report.md
+# - Cross-query: data/YYYYMMDD/cross_analysis_*.json
 ```
 
 ## Analysis Types
@@ -150,37 +167,59 @@ data/
 └── raw_scraper_results.json         # Raw Apify results
 ```
 
-## Search Approaches Explained
+## Search & Analysis Decision Tree
 
-### Single Query (AND Logic)
+### 🤔 Which Tool Should I Use?
+
+```
+Start with: python search.py or python query_builder.py
+
+Then choose your analysis based on what you scraped:
+```
+
+| What You Did | What You Got | How to Analyze |
+|-------------|--------------|----------------|
+| Single search | One folder | `python analyze.py --latest` |
+| Multiple with `--combine` | One combined folder | `python analyze.py --latest` |
+| Multiple without combine | Multiple folders | `python analyze_multi.py` |
+| Topic + variations | Combined folder | `python analyze.py --latest` |
+| Competitor comparison | Separate or combined | Use `analyze_multi.py` for cross-brand insights |
+
+### Search Approaches Explained
+
+#### Single Query (AND Logic)
 ```bash
 python main.py --keyword "杜蕾斯 口味"
 ```
 - Searches for posts containing BOTH "杜蕾斯" AND "口味"
 - Results: Posts specifically about Durex flavors
+- Analysis: `python analyze.py --latest`
 
-### Multiple Separate Queries
+#### Multiple Separate Queries
 ```bash
 python scrape_multi.py "杜蕾斯" "口味" "巧克力" --posts 20
 ```
 - Runs 3 separate searches
 - Creates 3 folders with different results
-- Analyze each separately or together
+- Analysis: `python analyze_multi.py` for cross-query insights
 
-### Multiple Combined Queries
+#### Multiple Combined Queries
 ```bash
 python scrape_multi.py "杜蕾斯" "口味" --posts 20 --combine
 ```
 - Runs separate searches but combines results
 - Single folder for unified analysis
-- Good for comparing different aspects
+- Analysis: `python analyze.py --latest`
 
 ## Example Workflows
 
-### Workflow 1: Single Brand Deep Dive
+### Workflow 1: Interactive Single Brand Deep Dive
 ```bash
-# 1. Scrape content about a brand
-python main.py --keyword "科兰黎" --posts 20
+# 1. Use interactive search builder
+python search.py
+# Choose option 1 (single topic)
+# Enter: "科兰黎 护肤"
+# Posts: 30
 
 # 2. Run comprehensive analysis
 python analyze.py --latest --themes --semiotics --innovation --openai
@@ -189,24 +228,47 @@ python analyze.py --latest --themes --semiotics --innovation --openai
 python view_analysis.py
 ```
 
-### Workflow 2: Competitive Analysis
+### Workflow 2: Interactive Competitive Analysis
 ```bash
-# 1. Scrape multiple competitors
-python scrape_multi.py "杜蕾斯" "杰士邦" "冈本" --posts 30 --combine
+# 1. Use query builder for competitive strategy
+python query_builder.py
+# Select: Competitive analysis
+# Enter brands: 杜蕾斯, 杰士邦, 冈本
+# Choose: Combine for unified analysis
 
-# 2. Run cross-brand analysis
-python analyze_multi.py --folders "杜蕾斯_杰士邦_冈本" --preset competitive --brand
+# 2. Analyze combined results
+python analyze.py --latest --preset marketing_full --brand
 
-# 3. Results show competitive insights across brands
+# 3. View competitive insights
+python view_analysis.py
 ```
 
-### Workflow 3: Topic Exploration
+### Workflow 3: Cross-Query Topic Analysis
 ```bash
-# 1. Scrape related topics
-python scrape_multi.py "避孕套 口味" "安全套 巧克力" "情趣用品 果味" --posts 15 --combine
+# 1. Interactive topic exploration
+python search.py
+# Choose option 3 (topic + variations)
+# Base: "避孕套"
+# Variations: "口味", "安全", "品牌", "进口"
 
-# 2. Analyze for market trends
-python analyze.py --keyword "combined_3_keywords" --trends --innovation
+# 2. If combined: Single analysis
+python analyze.py --latest --trends --innovation
+
+# 2. If separate: Cross-query analysis
+python analyze_multi.py
+# Select all folders for comparison
+```
+
+### Workflow 4: Manual Advanced Search
+```bash
+# 1. Scrape with specific parameters
+python scrape_multi.py "杜蕾斯 口味" "杜蕾斯 泰国" "杜蕾斯 礼盒" --posts 20 --combine
+
+# 2. Run targeted analysis
+python analyze.py --keyword "杜蕾斯_口味_杜蕾斯_泰国_杜蕾斯_礼盒" --themes --cultural --engagement
+
+# 3. Generate insights report
+python view_analysis.py
 ```
 
 ## LLM Providers
