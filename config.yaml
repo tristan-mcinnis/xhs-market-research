@@ -1,0 +1,469 @@
+# Xiaohongshu Content Analysis Configuration
+
+# Analysis Types - Each can be used with --<type> argument
+analysis_types:
+  # Basic sentiment and theme analysis
+  basic:
+    name: "Basic Analysis"
+    description: "General sentiment and theme extraction"
+    text_prompt: |
+      Analyze this Xiaohongshu post for:
+      1. Overall sentiment (positive/negative/neutral)
+      2. Key themes and topics
+      3. Main message
+      4. Target audience
+      Return as structured JSON with keys: sentiment, themes, message, audience
+    image_prompt: |
+      Analyze this image for:
+      1. Visual composition and quality
+      2. Brand presence (logos, products)
+      3. Emotional tone conveyed
+      4. Key visual elements
+      Return as JSON with keys: composition, brands, emotion, elements
+
+  # Semiotic analysis for deeper meaning
+  semiotics:
+    name: "Semiotic Analysis"
+    description: "Decode signs, symbols, and cultural meanings"
+    text_prompt: |
+      You are a cultural semiotician specializing in consumer behavior and brand communications in Asian markets.
+      Perform a deep semiotic analysis of this Xiaohongshu content.
+
+      SEMIOTIC FRAMEWORK:
+
+      1. SIGNS & SIGNIFICATION:
+         - Primary signifiers (explicit elements mentioned)
+         - What they signify (deeper meanings)
+         - Chains of signification (how meanings connect)
+         - Floating signifiers (ambiguous/contested meanings)
+
+      2. CULTURAL CODES & MEANINGS:
+         - Traditional Chinese cultural codes being referenced
+         - Modern/Western cultural codes being adopted
+         - Hybrid cultural meanings (East meets West)
+         - Subcultural codes (youth, urban, digital native)
+         - Gender codes and their subversions
+
+      3. MYTHOLOGIES & NARRATIVES:
+         - Consumer myths being reinforced (e.g., "imported is better")
+         - Brand narratives and storytelling patterns
+         - Cultural narratives about intimacy/relationships
+         - Progress narratives (tradition vs modernity)
+
+      4. BINARY OPPOSITIONS:
+         - Key contrasts being established (local/foreign, traditional/modern, safe/adventurous)
+         - How these oppositions structure meaning
+         - Tensions and resolutions between opposites
+
+      5. CONNOTATIVE LAYERS:
+         - First-order meanings (denotation)
+         - Second-order meanings (connotation)
+         - Third-order meanings (myth/ideology)
+         - Emotional associations and affects
+
+      6. INTERTEXTUALITY:
+         - References to other texts/media
+         - Cultural references and callbacks
+         - Memetic elements and viral markers
+
+      Return as comprehensive JSON with keys:
+      signifiers, signifieds, signification_chains, cultural_codes, hybrid_meanings,
+      myths, narratives, oppositions, connotations, emotional_associations, intertextuality
+    image_prompt: |
+      Conduct a comprehensive visual semiotic analysis of these product images from Xiaohongshu.
+
+      VISUAL SEMIOTIC FRAMEWORK:
+
+      1. VISUAL SIGNIFICATION SYSTEM:
+         - Primary visual signifiers (colors, shapes, textures)
+         - Secondary signifiers (composition, lighting, angles)
+         - Signified concepts and meanings
+         - Visual syntagms (how elements combine)
+         - Visual paradigms (choices made vs alternatives)
+
+      2. SYMBOLIC UNIVERSE:
+         - Product as symbol (what it represents beyond function)
+         - Environmental symbols and props
+         - Body language and gestural codes
+         - Facial expressions and emotional signaling
+         - Status symbols and social markers
+
+      3. CULTURAL VISUAL GRAMMAR:
+         - Chinese visual conventions being used
+         - Western/global visual languages adopted
+         - Hybrid visual codes (glocalization)
+         - Platform-specific visual conventions (Xiaohongshu aesthetics)
+         - Generational visual preferences
+
+      4. VISUAL METAPHORS & METONYMY:
+         - Abstract concepts visualized (pleasure, safety, adventure)
+         - Part-for-whole representations
+         - Visual analogies and comparisons
+         - Transformational metaphors (before/after, with/without)
+
+      5. SCOPOPHILIC ECONOMY:
+         - What is offered to the gaze
+         - What is hidden or implied
+         - Voyeuristic vs exhibitionist elements
+         - Power dynamics in visual representation
+         - The erotics of the product image
+
+      6. VISUAL INTERTEXTUALITY:
+         - References to other visual cultures
+         - Memetic visual elements
+         - Brand visual signatures
+         - Cultural visual quotations
+
+      Return comprehensive JSON with keys:
+      visual_signifiers, symbolic_elements, signified_meanings,
+      cultural_visual_codes, visual_metaphors, gaze_dynamics,
+      hidden_meanings, visual_references, platform_aesthetics
+
+  # Theme extraction and clustering
+  themes:
+    name: "Thematic Analysis"
+    description: "Deep thematic analysis and pattern identification"
+    text_prompt: |
+      You are an expert analyst with over 25 years working in thematizing clustered information from market research data.
+      You excel at bringing to life detailed themes that are rich with details and powerfully written.
+
+      ANALYSIS FRAMEWORK:
+      Extract and analyze 4-5 key themes from this Xiaohongshu content about product innovation.
+
+      For EACH theme provide:
+      1. THEME TITLE: Clear, descriptive title (5-7 words) that captures the essence
+      2. DETAILED EXPLANATION: (150-200 words) explaining:
+         - What this theme represents in the market context
+         - Why it matters for product innovation
+         - How it manifests in consumer behavior
+         - Its cultural significance in Chinese market
+      3. SUPPORTING EVIDENCE: Specific examples from the content that support this theme
+      4. MARKET IMPLICATIONS: What this means for brand strategy and product development
+      5. INNOVATION OPPORTUNITIES: Actionable insights for product teams
+      6. CONSUMER INSIGHTS: What this reveals about target audience preferences
+
+      ADDITIONAL ANALYSIS:
+      - EMERGENT PATTERNS: Recurring ideas or behavioral patterns
+      - CULTURAL CODES: Chinese market-specific meanings and associations
+      - GENERATIONAL MARKERS: Gen Z vs Millennial differences if apparent
+      - THEMATIC GAPS: What's notably absent or avoided in discussions?
+      - CROSS-THEME CONNECTIONS: How themes relate and influence each other
+
+      Return as detailed JSON with keys:
+      themes (array with title, explanation, evidence, implications, opportunities, insights for each),
+      patterns, cultural_codes, generational_markers, gaps, connections
+    image_prompt: |
+      As an expert in visual semiotics and consumer culture, analyze these product images for thematic content.
+
+      VISUAL THEME ANALYSIS:
+
+      1. RECURRING VISUAL MOTIFS:
+         - Product presentation patterns
+         - Symbolic elements that repeat
+         - Visual metaphors for product benefits
+         - Cultural symbols and their frequency
+
+      2. COLOR PSYCHOLOGY & THEMES:
+         - Dominant color palettes and their meanings
+         - Color associations with flavors/varieties
+         - Cultural color symbolism (Chinese market specific)
+         - Emotional responses triggered by colors
+
+      3. COMPOSITIONAL NARRATIVES:
+         - How products are staged/arranged
+         - Visual hierarchy and emphasis
+         - Spatial relationships and their meanings
+         - Flow and direction of visual attention
+
+      4. LIFESTYLE POSITIONING:
+         - Target demographic visualization
+         - Aspirational vs relatable elements
+         - Social contexts implied
+         - Values and attitudes projected
+
+      5. AESTHETIC MOVEMENTS:
+         - Design trends being followed
+         - Cultural aesthetic preferences
+         - Global vs local visual languages
+         - Innovation in visual presentation
+
+      6. PRODUCT SEMIOTICS:
+         - How products are fetishized or normalized
+         - Visual codes for quality/premium
+         - Taboo navigation through imagery
+         - Playfulness vs seriousness balance
+
+      Return detailed JSON with keys:
+      visual_motifs, recurring_symbols, color_meanings, color_emotions,
+      composition_patterns, visual_narratives, lifestyle_codes, aesthetic_trends,
+      product_presentation, cultural_visual_codes
+
+  # Consumer psychology analysis
+  psychology:
+    name: "Consumer Psychology Analysis"
+    description: "Understand psychological triggers and consumer behavior"
+    text_prompt: |
+      Analyze the consumer psychology aspects:
+      1. EMOTIONAL TRIGGERS: What emotions are being activated?
+      2. PSYCHOLOGICAL NEEDS: Which Maslow needs are addressed?
+      3. COGNITIVE BIASES: What biases are being leveraged (social proof, FOMO, etc)?
+      4. MOTIVATION DRIVERS: Intrinsic vs extrinsic motivations appealed to
+      5. DECISION FACTORS: What might influence purchase/engagement decisions?
+      Return as JSON with keys: emotions, needs, biases, motivations, decision_factors
+    image_prompt: |
+      Analyze visual psychology:
+      1. COLOR PSYCHOLOGY: How colors influence perception/mood
+      2. VISUAL HIERARCHY: How attention is directed
+      3. GESTALT PRINCIPLES: How visual elements create meaning
+      4. EMOTIONAL RESONANCE: What feelings are evoked?
+      5. VISUAL PERSUASION: Techniques used to influence
+      Return as JSON with keys: color_psychology, hierarchy, gestalt, emotions, persuasion
+
+  # Brand analysis
+  brand:
+    name: "Brand Analysis"
+    description: "Evaluate brand presence, positioning, and perception"
+    text_prompt: |
+      Conduct brand analysis:
+      1. BRAND MENTIONS: Explicit and implicit brand references
+      2. BRAND POSITIONING: How is the brand positioned vs competitors?
+      3. BRAND PERSONALITY: What traits/characteristics are associated?
+      4. BRAND ASSOCIATIONS: What concepts/values are linked to the brand?
+      5. BRAND SENTIMENT: Positive/negative/neutral perception
+      Return as JSON with keys: mentions, positioning, personality, associations, sentiment
+    image_prompt: |
+      Analyze brand visual presence:
+      1. BRAND VISIBILITY: Logo placement, product prominence
+      2. VISUAL BRAND CODES: Colors, styles associated with brand
+      3. BRAND CONTEXT: Setting and lifestyle context
+      4. COMPETITIVE PRESENCE: Any competitor brands visible?
+      5. BRAND INTEGRATION: Natural vs forced product placement
+      Return as JSON with keys: visibility, visual_codes, context, competitors, integration
+
+  # Influencer marketing analysis
+  influencer:
+    name: "Influencer Marketing Analysis"
+    description: "Evaluate influencer content and effectiveness"
+    text_prompt: |
+      Analyze influencer marketing aspects:
+      1. AUTHENTICITY: How genuine vs sponsored does it feel?
+      2. INFLUENCE TACTICS: What persuasion techniques are used?
+      3. AUDIENCE ALIGNMENT: How well matched to target audience?
+      4. ENGAGEMENT DRIVERS: What encourages likes/comments/shares?
+      5. TRUST SIGNALS: What builds credibility?
+      Return as JSON with keys: authenticity, tactics, alignment, engagement_drivers, trust_signals
+    image_prompt: |
+      Analyze influencer visual strategy:
+      1. PERSONAL BRANDING: How is the influencer presented?
+      2. LIFESTYLE PORTRAYAL: What lifestyle is being sold?
+      3. PRODUCT INTEGRATION: How naturally are products included?
+      4. VISUAL STORYTELLING: What story is being told?
+      5. ASPIRATION VS RELATABILITY: Balance between aspirational and relatable
+      Return as JSON with keys: personal_brand, lifestyle, product_integration, storytelling, aspiration_balance
+
+  # Trend analysis
+  trends:
+    name: "Trend Analysis"
+    description: "Identify emerging trends and cultural movements"
+    text_prompt: |
+      Identify trends and patterns:
+      1. EMERGING TRENDS: New behaviors, preferences, or topics
+      2. TREND LIFECYCLE: Is this nascent, growing, mature, or declining?
+      3. CULTURAL MOVEMENTS: Broader cultural shifts reflected
+      4. GENERATIONAL MARKERS: Gen Z, Millennial, etc. specific elements
+      5. FUTURE INDICATORS: What might this predict about future trends?
+      Return as JSON with keys: emerging, lifecycle_stage, cultural_movements, generational, future_indicators
+    image_prompt: |
+      Analyze visual trends:
+      1. AESTHETIC TRENDS: Current visual styles and movements
+      2. COMPOSITION TRENDS: Popular layouts and formats
+      3. COLOR TRENDS: Trending palettes and combinations
+      4. FILTER/EDITING TRENDS: Post-processing styles
+      5. VISUAL INNOVATION: New or unique visual approaches
+      Return as JSON with keys: aesthetics, composition, colors, editing, innovation
+
+  # Competitive intelligence
+  competitive:
+    name: "Competitive Intelligence"
+    description: "Extract competitive insights and market positioning"
+    text_prompt: |
+      Extract competitive intelligence:
+      1. COMPETITOR MENTIONS: Direct and indirect references
+      2. DIFFERENTIATION POINTS: Unique value propositions highlighted
+      3. COMPETITIVE ADVANTAGES: Strengths emphasized
+      4. MARKET GAPS: Unmet needs or opportunities identified
+      5. POSITIONING STRATEGY: How positioned in competitive landscape
+      Return as JSON with keys: competitors, differentiation, advantages, gaps, positioning
+    image_prompt: |
+      Analyze competitive visual landscape:
+      1. VISUAL DIFFERENTIATION: How does this stand out?
+      2. CATEGORY CONVENTIONS: Following or breaking norms?
+      3. COMPETITIVE BENCHMARKING: Quality vs competitors
+      4. UNIQUE VISUAL ASSETS: Distinctive visual elements
+      5. MARKET POSITIONING: Premium, mass, niche?
+      Return as JSON with keys: differentiation, conventions, benchmarking, unique_assets, market_position
+
+  # Cultural insights
+  cultural:
+    name: "Cultural Analysis"
+    description: "Understand cultural context and significance"
+    text_prompt: |
+      Analyze cultural dimensions:
+      1. CULTURAL VALUES: What values are reflected or promoted?
+      2. SOCIAL NORMS: What behaviors are normalized or challenged?
+      3. CULTURAL REFERENCES: Specific cultural touchpoints
+      4. CROSS-CULTURAL ELEMENTS: Global vs local cultural aspects
+      5. SUBCULTURAL MARKERS: Specific community/tribe indicators
+      Return as JSON with keys: values, norms, references, cross_cultural, subcultures
+    image_prompt: |
+      Analyze visual cultural elements:
+      1. CULTURAL SYMBOLS: Visual elements with cultural meaning
+      2. AESTHETIC CULTURE: Which visual culture/subculture?
+      3. CULTURAL CONTEXT: Setting and environmental cues
+      4. GESTURE/EXPRESSION: Culturally specific body language
+      5. CULTURAL FUSION: Mixing of cultural visual elements
+      Return as JSON with keys: symbols, aesthetic_culture, context, gestures, fusion
+
+  # Innovation insights - NEW
+  innovation:
+    name: "Innovation Opportunity Analysis"
+    description: "Identify concrete product innovation opportunities"
+    text_prompt: |
+      You are a product innovation strategist with expertise in FMCG and intimate wellness categories.
+      Analyze this Xiaohongshu content to identify specific innovation opportunities.
+
+      INNOVATION FRAMEWORK:
+
+      1. WHITE SPACE OPPORTUNITIES:
+         - Unmet needs explicitly mentioned
+         - Pain points with current products
+         - Wish-list features consumers desire
+         - Gaps between available and ideal products
+
+      2. FLAVOR/VARIANT INSIGHTS:
+         - Most discussed flavors/variants
+         - Emotional associations with each variant
+         - Cultural significance of specific flavors
+         - Crossover opportunities from other categories
+
+      3. POSITIONING TERRITORIES:
+         - Functional benefits emphasized
+         - Emotional benefits sought
+         - Social benefits mentioned
+         - Occasions and contexts for use
+
+      4. INNOVATION VECTORS:
+         - Product form innovations
+         - Packaging innovations
+         - Experience innovations
+         - Service/ecosystem innovations
+         - Channel innovations
+
+      5. CONSUMER BARRIERS:
+         - Purchase barriers to overcome
+         - Usage barriers to address
+         - Social/cultural barriers to navigate
+         - Knowledge/education gaps
+
+      6. COMPETITIVE ADVANTAGES:
+         - What competitors are doing well
+         - What competitors are missing
+         - Differentiation opportunities
+         - Premium/value positioning options
+
+      Return as actionable JSON with keys:
+      white_spaces, unmet_needs, desired_features,
+      flavor_opportunities, emotional_territories,
+      innovation_vectors, barriers_to_address,
+      competitive_gaps, positioning_options,
+      priority_recommendations
+
+    image_prompt: |
+      Analyze product images for innovation cues and opportunities.
+
+      VISUAL INNOVATION ANALYSIS:
+
+      1. PACKAGING INNOVATION CUES:
+         - Current packaging conventions
+         - Opportunities for differentiation
+         - Premium/value visual codes
+         - Sustainability visual markers
+
+      2. PRODUCT FORM FACTORS:
+         - Current product presentations
+         - Alternative form possibilities
+         - Size/format variations shown
+         - Multi-pack opportunities
+
+      3. VISUAL BENEFIT COMMUNICATION:
+         - How benefits are visualized
+         - Missed visual communication opportunities
+         - Clarity of value proposition
+         - Educational visual elements
+
+      4. SHELF IMPACT:
+         - Visual differentiation tactics
+         - Color blocking strategies
+         - Brand blocking effectiveness
+         - Navigation and findability
+
+      5. USAGE CONTEXT VISUALIZATION:
+         - Contexts shown or implied
+         - Occasion expansion opportunities
+         - User imagery and representation
+         - Lifestyle integration possibilities
+
+      Return as JSON with keys:
+      packaging_opportunities, form_innovations,
+      visual_communication_gaps, shelf_strategies,
+      context_expansion, visual_differentiation
+
+  # Engagement optimization
+  engagement:
+    name: "Engagement Analysis"
+    description: "Understand what drives engagement and virality"
+    text_prompt: |
+      Analyze engagement factors:
+      1. HOOK ELEMENTS: What grabs attention initially?
+      2. SHAREABILITY: What makes this worth sharing?
+      3. DISCUSSION TRIGGERS: What prompts comments?
+      4. EMOTIONAL RESONANCE: What emotions drive engagement?
+      5. CALL-TO-ACTION: Explicit or implicit CTAs present
+      Return as JSON with keys: hooks, shareability, discussion_triggers, emotions, ctas
+    image_prompt: |
+      Analyze visual engagement drivers:
+      1. SCROLL-STOPPING POWER: What makes people pause?
+      2. VISUAL HOOKS: Eye-catching elements
+      3. THUMBNAIL APPEAL: First impression impact
+      4. VISUAL CLARITY: How quickly is message understood?
+      5. MEMORABLE ELEMENTS: What sticks in memory?
+      Return as JSON with keys: stopping_power, visual_hooks, thumbnail, clarity, memorability
+
+# Configuration for different analysis combinations
+analysis_presets:
+  marketing_full:
+    name: "Full Marketing Analysis"
+    includes: ["basic", "brand", "psychology", "engagement"]
+    description: "Comprehensive marketing analysis"
+
+  cultural_deep:
+    name: "Deep Cultural Analysis"
+    includes: ["semiotics", "cultural", "themes"]
+    description: "In-depth cultural and semiotic analysis"
+
+  influencer_audit:
+    name: "Influencer Audit"
+    includes: ["influencer", "brand", "engagement", "authenticity"]
+    description: "Complete influencer marketing evaluation"
+
+  trend_research:
+    name: "Trend Research"
+    includes: ["trends", "cultural", "themes", "competitive"]
+    description: "Trend identification and analysis"
+
+# Output formatting options
+output:
+  format: "structured"  # structured, narrative, or hybrid
+  include_confidence: true  # Include confidence scores
+  include_recommendations: true  # Include actionable recommendations
+  language: "en"  # en, zh, or auto-detect
