@@ -1,0 +1,13 @@
+# Chinese makeup brand analysis
+# Focusing on domestic vs international brands
+
+完美日记
+花西子
+橘朵
+毛戈平
+珂拉琪
+3CE
+MAC 口红
+Dior 口红
+YSL 圣罗兰
+兰蔻
