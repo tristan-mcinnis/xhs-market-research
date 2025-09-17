@@ -51,74 +51,63 @@ DEEPSEEK_API_KEY="your_deepseek_key"
 MOONSHOT_API_KEY="your_moonshot_key"  # For Kimi
 ```
 
-### 3. Scrape Content
+### 3. Using the Unified CLI
 
-#### 🚀 Large-Scale Scraping (100-200 posts per query)
+The new unified `xhs` command provides all functionality through clear subcommands:
+
+#### 🎯 Interactive Mode (Recommended for Beginners)
 ```bash
-# Single topic at scale
-python scrape_scale.py "口红" --posts 200
+# Launch interactive mode - guides you through the entire process
+./xhs.py interactive
 
-# Multiple brands for competitive analysis
-python scrape_scale.py "完美日记" "花西子" "橘朵" --posts 100 --combine makeup_brands
-
-# From a query file
-python scrape_scale.py --file example_queries/coffee_war.txt --posts 150 --combine coffee_analysis
+# Or use interactive mode for specific tasks
+./xhs.py scrape --interactive
+./xhs.py analyze --interactive
 ```
 
-#### 🛠️ If Scraper Has Timeout Issues
+#### 📊 Scraping Content
 ```bash
-# Use retry logic with fallback to cached data
-python scrape_with_retry.py "杜蕾斯" --posts 100
+# Basic scraping
+./xhs.py scrape "keyword1" "keyword2" --posts 50
 
-# Work with existing cached data
-python scrape_with_retry.py "your_query" --use-cache
+# Large-scale scraping (100-200 posts per query)
+./xhs.py scrape "口红" --posts 200 --scale
 
-# Set up demo data from cache
-python demo_with_cached.py
+# Multiple brands with combination
+./xhs.py scrape "完美日记" "花西子" "橘朵" --posts 100 --combine makeup_brands
+
+# Load keywords from file
+./xhs.py scrape --file keywords.txt --posts 150 --scale
+
+# With retry logic for timeouts
+./xhs.py scrape "杜蕾斯" --posts 100 --retry --retries 3
 ```
 
-#### 🎯 Interactive Mode
+#### 🔍 Analyzing Content
 ```bash
-# Quick interactive search builder
-python search.py
+# Analyze latest scraped content with a preset
+./xhs.py analyze --latest --preset marketing_full
 
-# Full-featured query builder with strategies
-python query_builder.py
+# Analyze with specific analysis types and images
+./xhs.py analyze --latest --themes --brand --innovation --images --max-images 30
+
+# Analyze specific folder
+./xhs.py analyze --dir data/20240101/keyword --themes --semiotics
+
+# Choose LLM provider
+./xhs.py analyze --latest --preset cultural_deep --provider openai
 ```
 
-#### Standard Scraping
+#### 📋 Listing Available Options
 ```bash
-# Basic usage
-python main.py --keyword "SK-II" --posts 50
+# List available scraped data
+./xhs.py list data
 
-# Multiple keywords with combination
-python scrape_multi.py "特斯拉" "蔚来" "小鹏" --posts 30 --combine ev_analysis
-```
+# List analysis presets
+./xhs.py list presets
 
-### 4. Analyze Content (Text + Visual)
-
-#### 🎨 Enhanced Analysis with Image Analysis
-```bash
-# Analyze with visual content (recommended for comprehensive insights)
-python analyze_enhanced.py --latest --themes --images 30 --openai
-
-# Analyze specific folder with more images
-python analyze_enhanced.py --keyword makeup_brands --themes --semiotics --images 50
-
-# Skip image analysis for faster results
-python analyze_enhanced.py --latest --themes --no-images
-```
-
-#### Standard Text-Only Analysis
-```bash
-# Quick analysis of latest scrape
-python analyze.py --latest --themes --semiotics --openai
-
-# Full marketing analysis preset
-python analyze.py --latest --preset marketing_full --openai
-
-# Cross-query analysis for multiple folders
-python analyze_multi.py --folders "brand1" "brand2" --themes --brand
+# List analysis types
+./xhs.py list types
 ```
 
 #### Analysis Output Locations
@@ -129,19 +118,13 @@ python analyze_multi.py --folders "brand1" "brand2" --themes --brand
 | Combined (--combine) | `data/YYYYMMDD/combined_folder/aggregate_analysis.json` |
 | Multiple separate | `data/YYYYMMDD/cross_analysis_folders.json` |
 
-### 5. View Results
+### 4. View Results
 
-```bash
-# View formatted analysis results
-python view_analysis.py
+Results are automatically saved with each analysis:
+- **JSON Results**: `data/YYYYMMDD/keyword/analysis_TIMESTAMP.json`
+- **Markdown Report**: `data/YYYYMMDD/keyword/analysis_report_TIMESTAMP.md`
 
-# View specific analysis
-python view_analysis.py --keyword "杜蕾斯"
-
-# Check markdown reports directly:
-# - Single/Combined: data/YYYYMMDD/keyword/aggregate_analysis_report.md
-# - Cross-query: data/YYYYMMDD/cross_analysis_*.json
-```
+In interactive mode, you'll be prompted to view results immediately after analysis.
 
 ## Analysis Types
 
@@ -164,26 +147,26 @@ Combine multiple analysis types with presets:
 - `influencer_audit`: Influencer effectiveness evaluation
 - `trend_research`: Trend identification and analysis
 
-## Tools Overview
+## Unified CLI Commands
 
-### Scraping Tools
+The new `xhs.py` consolidates all functionality into a single, intuitive interface:
 
-| Tool | Purpose | Posts Target | Best For |
-|------|---------|--------------|----------|
-| `scrape_scale.py` | Large-scale collection | 100-200 per query | Production research |
-| `scrape_with_retry.py` | Handles timeouts | Flexible | When Apify is unstable |
-| `scrape_multi.py` | Multiple queries | 10-50 per query | Quick comparisons |
-| `main.py` | Single query | 10-50 | Testing/small samples |
-| `search.py` | Interactive builder | Any | User-friendly scraping |
+### Main Commands
 
-### Analysis Tools
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `scrape` | Scrape content from Xiaohongshu | `./xhs.py scrape "keyword" --posts 100` |
+| `analyze` | Analyze scraped content | `./xhs.py analyze --latest --preset marketing_full` |
+| `list` | List data, presets, or analysis types | `./xhs.py list presets` |
+| `interactive` | Guided interactive mode | `./xhs.py interactive` |
+| `help` | Show help information | `./xhs.py help` |
 
-| Tool | Features | Visual Analysis | Use Case |
-|------|----------|-----------------|----------|
-| `analyze_enhanced.py` | Text + Images + Comments | ✅ Yes | Comprehensive insights |
-| `analyze.py` | Text only | ❌ No | Quick text analysis |
-| `analyze_multi.py` | Cross-query comparison | ❌ No | Competitive analysis |
-| `view_analysis.py` | Display results | N/A | View formatted output |
+### Key Features
+
+- **Interactive Mode**: Step-by-step guidance for both scraping and analysis
+- **Flexible Scraping**: Automatic selection of appropriate scraper (scale, retry, multi)
+- **Analysis Presets**: Quick access to pre-configured analysis combinations
+- **Unified Interface**: All functionality through one command with clear subcommands
 
 ## Output Structure
 
@@ -262,50 +245,44 @@ Generic term
 EOF
 
 # 2. Scrape at scale (100-200 posts per query)
-python scrape_scale.py --file my_research.txt --posts 150 --combine market_study
+./xhs.py scrape --file my_research.txt --posts 150 --scale --combine market_study
 
 # 3. Analyze with visual content
-python analyze_enhanced.py --keyword market_study --themes --innovation --images 40
+./xhs.py analyze --latest --themes --innovation --images --max-images 40
 
-# 4. View results
-python view_analysis.py
+# 4. Results are automatically saved and displayed
 ```
 
 ### Workflow 2: Quick Competitive Analysis
 ```bash
 # 1. Scrape multiple brands directly
-python scrape_scale.py "Nike" "Adidas" "李宁" "安踏" --posts 100 --combine sportswear
+./xhs.py scrape "Nike" "Adidas" "李宁" "安踏" --posts 100 --combine sportswear
 
-# 2. Run enhanced analysis with images
-python analyze_enhanced.py --keyword sportswear --themes --brand --images 30
+# 2. Run analysis with preset
+./xhs.py analyze --latest --preset marketing_full --images
 
-# 3. View competitive insights
-python view_analysis.py
+# 3. View competitive insights in generated report
 ```
 
-### Workflow 3: When Scraper Has Timeout Issues
+### Workflow 3: Interactive Mode for Beginners
 ```bash
-# 1. Try with retry logic
-python scrape_with_retry.py "your_topic" --posts 50 --retries 3
+# Simply run:
+./xhs.py interactive
 
-# 2. If still failing, use cached data
-python scrape_with_retry.py "your_topic" --use-cache
-
-# 3. Analyze whatever data you have
-python analyze_enhanced.py --latest --themes --images 20
+# The CLI will guide you through:
+# - Choosing to scrape or analyze
+# - Entering keywords or selecting folders
+# - Choosing analysis types or presets
+# - Viewing results
 ```
 
-### Workflow 4: Interactive Mode for Beginners
+### Workflow 4: When Scraper Has Timeout Issues
 ```bash
-# 1. Use interactive builder
-python search.py
-# Select option, enter keywords, choose combine option
+# Use retry flag automatically
+./xhs.py scrape "your_topic" --posts 50 --retry --retries 3
 
-# 2. Run visual + text analysis
-python analyze_enhanced.py --latest --themes --semiotics --images 25
-
-# 3. View formatted output
-python view_analysis.py
+# Then analyze
+./xhs.py analyze --latest --themes --images
 ```
 
 ## LLM Providers

@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 """
-XHS Scraper - Professional Xiaohongshu Content Scraper
-Main entry point for the refactored application
+XHS Scraper - Legacy entry point
+This file is kept for backward compatibility.
+Please use xhs.py for the new unified CLI interface.
 """
 
 import sys
 from pathlib import Path
 
-# Add src to path
+# Add current directory to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from src.cli.commands import main
+# Import and run the new unified CLI
+from xhs import main
 
 if __name__ == "__main__":
+    print("[Note] xhs_scraper.py is deprecated. Please use xhs.py instead.")
+    print("")
     main()
