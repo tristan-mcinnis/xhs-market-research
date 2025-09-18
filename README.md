@@ -1,4 +1,6 @@
-# Xiaohongshu (小红书) Semiotic Analysis Pipeline
+# Xiaohongshu (小红书) Analysis Pipeline
+
+<img width="480" height="360" alt="image" src="https://github.com/user-attachments/assets/091e321e-770e-44fd-b7e0-022413e6bc20" />
 
 A complete end-to-end workflow for scraping, analyzing, and extracting insights from Xiaohongshu content using GPT-5-mini and advanced ML techniques.
 
