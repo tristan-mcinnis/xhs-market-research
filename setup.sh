@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # XHS Scraper Setup Script using UV
-# Fast, modern Python package management
+# Fast, modern Python package management with Python 3.12
 
-set -e
+set -euo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -22,48 +22,57 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Check for Python
-if ! command_exists python3; then
-    echo -e "${RED}❌ Python 3 is not installed${NC}"
-    echo "Please install Python 3.8 or higher from https://python.org"
+# Ensure uv is present
+if ! command_exists uv; then
+    echo -e "${RED}✗ uv not found.${NC}"
+    echo "Install with: curl -LsSf https://astral.sh/uv/install.sh | sh"
     exit 1
 fi
 
-PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
-echo -e "${GREEN}✓${NC} Found Python ${PYTHON_VERSION}"
-
-# Install UV if not present
-if ! command_exists uv; then
-    echo -e "${YELLOW}Installing UV package manager...${NC}"
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-
-    # Add UV to PATH for current session
-    export PATH="$HOME/.cargo/bin:$PATH"
-
-    # Add to shell profile if not already there
-    if [[ "$SHELL" == *"zsh"* ]]; then
-        PROFILE="$HOME/.zshrc"
-    else
-        PROFILE="$HOME/.bashrc"
-    fi
-
-    if ! grep -q ".cargo/bin" "$PROFILE" 2>/dev/null; then
-        echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> "$PROFILE"
-        echo -e "${GREEN}✓${NC} Added UV to $PROFILE"
-    fi
-
-    echo -e "${GREEN}✓${NC} UV installed successfully"
-else
-    echo -e "${GREEN}✓${NC} UV is already installed"
+# Prefer a specific Python 3.12 interpreter if available
+PY_BIN="${PY_BIN:-$(command -v python3.12 || command -v python3 || true)}"
+if [[ -z "${PY_BIN}" ]]; then
+    echo -e "${RED}✗ python3 not found in PATH${NC}"
+    exit 1
 fi
 
-# Create virtual environment with UV
-echo -e "${YELLOW}Creating virtual environment...${NC}"
-uv venv --python 3.8
+echo "Detected Python at: ${PY_BIN}"
+"${PY_BIN}" --version
 
-# Install dependencies in virtual environment
+# Require Python >= 3.12
+if ! "${PY_BIN}" -c "import sys; sys.exit(0 if sys.version_info >= (3,12) else 1)"; then
+    echo -e "${RED}✗ Python 3.12+ required.${NC}"
+    echo "  Install python@3.12 and ensure it's first in PATH."
+    echo "  macOS (Homebrew): brew install python@3.12 && brew link python@3.12 --force"
+    echo "  Linux: sudo apt install python3.12 python3.12-venv"
+    exit 1
+fi
+
+echo -e "${GREEN}✓${NC} Python 3.12+ verified"
+
+echo -e "${GREEN}✓${NC} UV is installed"
+
+# Create virtual environment with Python 3.12
+echo -e "${YELLOW}Creating virtual environment with Python 3.12...${NC}"
+rm -rf .venv
+uv venv --python 3.12
+
+echo -e "${YELLOW}Activating virtual environment...${NC}"
+# shellcheck disable=SC1091
+source .venv/bin/activate
+
+# Install dependencies
 echo -e "${YELLOW}Installing dependencies...${NC}"
-uv pip install --python .venv/bin/python -r requirements.txt
+if [[ -f "requirements.txt" ]]; then
+    uv pip install -r requirements.txt
+elif [[ -f "pyproject.toml" ]]; then
+    uv sync
+else
+    echo -e "${YELLOW}⚠ No requirements.txt or pyproject.toml found; skipping install.${NC}"
+fi
+
+echo -e "${GREEN}✓${NC} Dependencies installed"
+echo "Python version in venv: $(python --version)"
 
 # Check for API token
 if [ ! -f ".env" ]; then

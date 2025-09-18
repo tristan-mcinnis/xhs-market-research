@@ -1,0 +1,1127 @@
+[
+  {
+    "section":"VISUAL CODES",
+    "phrase":"pastel pink",
+    "doc_freq":5,
+    "total_score":2.2423,
+    "avg_score":0.44846,
+    "example_sentence":"Pastel pink-to-blue gradient, soft lighting and large bold typography create a contemporary, millennial-friendly aesthetic that reads as both romantic and clinical.",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 667943a5000000001f0061c4_0_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"soft pastel gradient",
+    "doc_freq":4,
+    "total_score":2.075,
+    "avg_score":0.51875,
+    "example_sentence":"Soft pastel gradient (pink to purple) and rounded white text blocks create a reassuring, feminine aesthetic; bold black headline in a condensed, slightly retro display type anchors authority, while orderly bullet-like layout mimics instructional infographics.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"soft",
+    "doc_freq":4,
+    "total_score":1.1023,
+    "avg_score":0.275575,
+    "example_sentence":"Bright citrus palette (orange, green, aqua) and soft pastels create a kawaii, consumable aesthetic; tight tabletop composition with lace doily and playful stickers frames the product like a lifestyle prop, turning utilitarian packaging into a cute collectible.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 68c106f7000000001d01c74c_3_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"like",
+    "doc_freq":3,
+    "total_score":0.4443,
+    "avg_score":0.1481,
+    "example_sentence":"Bright monochromatic yellow background with bold white-and-blue drop-shadow typography creates high contrast and optimism; centered, poster-like composition uses large headline hierarchy to mimic lifestyle-brand cover art and instant legibility.",
+    "example_files":"682475fe0000000023011532_2_在小红书跟风入成功的小红套❗❗.jpg, 662789e90000000001032135_7_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 68c106f7000000001d01c74c_0_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"create",
+    "doc_freq":3,
+    "total_score":0.4122,
+    "avg_score":0.1374,
+    "example_sentence":"Warm wood grain and brown\/orange tones create a cozy, gourmand palette; shallow perspective and close-up product shots stage the boxes as tactile objects, while overlaid caption text in bold fonts mimics Xiaohongshu post aesthetics.",
+    "example_files":"6881fadd000000001c031cb2_1_不敢相信这里美成了电脑桌面.jpg, 667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 6650401e00000000160130d4_1_vocal！太超前了，用了根本舍不得换.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"kawaii motifs flower",
+    "doc_freq":2,
+    "total_score":1.303,
+    "avg_score":0.6515,
+    "example_sentence":"Soft pastel pink background, rounded kawaii motifs (flower, cherubic cupid) and chunky black-outlined yellow typography create a cute, non-threatening aesthetic; centered hierarchi",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"yellow white palette",
+    "doc_freq":2,
+    "total_score":1.2798,
+    "avg_score":0.6399,
+    "example_sentence":"Bright yellow and white palette, rounded pill labels and drop shadows create a friendly, hygienic, commercial aesthetic; centered vertical composition with large headline (乳胶材质) us",
+    "example_files":"662789e90000000001032135_6_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 662789e90000000001032135_4_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"soft pastel palette",
+    "doc_freq":2,
+    "total_score":1.1768,
+    "avg_score":0.5884,
+    "example_sentence":"Soft pastel palette (pink, yellow, mint) and rounded kawaii motifs (flower, strawberry, cherub) create a cutesy, non-threatening aesthetic; centered block text with bold headings in comic-like fonts signals accessible infographic composition.",
+    "example_files":"68c106f7000000001d01c74c_0_情侣一定要知道的这10个冷知识.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"bright candy pink",
+    "doc_freq":2,
+    "total_score":1.1555,
+    "avg_score":0.57775,
+    "example_sentence":"Bright, candy-pink palette, soft lighting and shallow depth of field create a cute, intimate aesthetic; centered product held by a hand composes a personal, tactile shot that reads",
+    "example_files":"68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"sans serif chinese",
+    "doc_freq":2,
+    "total_score":1.1363,
+    "avg_score":0.56815,
+    "example_sentence":"Bold black sans-serif Chinese characters dominate a clean white frame, paired with playful yellow-green accent and repeated pear\/emoji motifs. Composition mimics a desktop window a",
+    "example_files":"68c106f7000000001d01c74c_3_情侣一定要知道的这10个冷知识.jpg, 66596e310000000005007846_0_大家怎么看待果味的产品.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"centered block text",
+    "doc_freq":2,
+    "total_score":1.014,
+    "avg_score":0.507,
+    "example_sentence":"Soft pastel palette (pink, yellow, mint) and rounded kawaii motifs (flower, strawberry, cherub) create a cutesy, non-threatening aesthetic; centered block text with bold headings in comic-like fonts signals accessible infographic composition.",
+    "example_files":"68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"soft pastel",
+    "doc_freq":2,
+    "total_score":0.9284,
+    "avg_score":0.4642,
+    "example_sentence":"Soft pastel gradient (pink-to-lavender) and minimalist layout use a feminine, gentle aesthetic; blocky headings and checklist-style bullets create an orderly, semi-clinical composition that balances playfulness and authority.",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68b562f5000000001b022729_3_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"icons",
+    "doc_freq":2,
+    "total_score":0.8608,
+    "avg_score":0.4304,
+    "example_sentence":"Bright yellow border and buttons, soft pastels and rounded icons create a friendly, non-threatening clinical look; playful anthropomorphized rulers and tape-measure illustrations add kawaii charm.",
+    "example_files":"667943a5000000001f0061c4_2_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 662789e90000000001032135_2_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"aesthetics",
+    "doc_freq":2,
+    "total_score":0.8214,
+    "avg_score":0.4107,
+    "example_sentence":"Composition mimics a desktop window and app widget, creating layered GUI aesthetics and clear visual hierarchy.",
+    "example_files":"671b0cfc0000000021004788_3_探秘不同套套：为房事增添多彩体验🎉.jpg, 66596e310000000005007846_0_大家怎么看待果味的产品.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"typography create",
+    "doc_freq":2,
+    "total_score":0.7901,
+    "avg_score":0.39505,
+    "example_sentence":"Soft pastel pink background, rounded kawaii motifs (flower, cherubic cupid) and chunky black-outlined yellow typography create a cute, non-threatening aesthetic; centered hierarchical composition places the headline “如何正确挑选TT” as the dominant signifier.",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 671b0cfc0000000021004788_3_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"contrast",
+    "doc_freq":2,
+    "total_score":0.763,
+    "avg_score":0.3815,
+    "example_sentence":"Soft, warm filter with beige and red contrast; close-up portrait composition centers face and product, using shallow depth to blur background and create intimacy.",
+    "example_files":"6881fadd000000001c031cb2_0_不敢相信这里美成了电脑桌面.jpg, 682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"centers face product",
+    "doc_freq":2,
+    "total_score":0.7473,
+    "avg_score":0.37365,
+    "example_sentence":"Soft, warm beige and red palette creates an intimate, “everyday luxury” aesthetic; close-up, shallow depth-of-field composition centers the face and product, using skin-detail (fre",
+    "example_files":"682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg, 682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"aesthetic centered",
+    "doc_freq":2,
+    "total_score":0.731,
+    "avg_score":0.3655,
+    "example_sentence":"Pastel gradient background (pink→lavender→blue) and soft white text panel use a “cute + clinical” aesthetic; centered, airy composition with gentle curves and light sparkles signal",
+    "example_files":"667943a5000000001f0061c4_1_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"infographic",
+    "doc_freq":2,
+    "total_score":0.7006,
+    "avg_score":0.3503,
+    "example_sentence":"Bright, high-contrast yellow frame with white interior creates a clean, optimistic aesthetic; modular blocks, dashed separators and icons mimic infographic\/educational layouts, emphasizing clarity and trustworthiness.",
+    "example_files":"68c106f7000000001d01c74c_3_情侣一定要知道的这10个冷知识.jpg, 662789e90000000001032135_1_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"pink blue",
+    "doc_freq":2,
+    "total_score":0.6488,
+    "avg_score":0.3244,
+    "example_sentence":"Soft pastel gradient (pink → blue) and rounded layout create a gentle, intimate mood; bold black headline and clean sans body text mimic infographics, balancing playfulness and aut",
+    "example_files":"667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"image uses",
+    "doc_freq":2,
+    "total_score":0.6418,
+    "avg_score":0.3209,
+    "example_sentence":"The image uses minimalist, clinical composition and cool neon-purple\/teal gradients to create a futuristic, hygienic aesthetic; boxed products are neatly arranged with isolated white background and close-ups of individual foil sachets to emphasize texture and detail.",
+    "example_files":"671b0cfc0000000021004788_2_探秘不同套套：为房事增添多彩体验🎉.jpg, 6881fadd000000001c031cb2_2_不敢相信这里美成了电脑桌面.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"minimal",
+    "doc_freq":2,
+    "total_score":0.5851,
+    "avg_score":0.29255,
+    "example_sentence":"Minimal, flat-design aesthetic with high-contrast red and black typography against a creamy background; centered vertical composition guides the eye from a condom-like icon at top to bold quoted “TT” and large Chinese characters, finished with a soft, blushing emoji to soften tone.",
+    "example_files":"67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg, 68ac3925000000001d03a539_0_沉浸式测评小雨衣...jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"cute non threatening",
+    "doc_freq":2,
+    "total_score":0.5157,
+    "avg_score":0.25785,
+    "example_sentence":"Soft pastel pink background, rounded kawaii motifs (flower, cherubic cupid) and chunky black-outlined yellow typography create a cute, non-threatening aesthetic; centered hierarchi",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 68c106f7000000001d01c74c_3_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"shallow",
+    "doc_freq":2,
+    "total_score":0.3839,
+    "avg_score":0.19195,
+    "example_sentence":"Warm wood grain and brown\/orange tones create a cozy, gourmand palette; shallow perspective and close-up product shots stage the boxes as tactile objects, while overlaid caption text in bold fonts mimics Xiaohongshu post aesthetics.",
+    "example_files":"682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg, 6650401e00000000160130d4_1_vocal！太超前了，用了根本舍不得换.jpg"
+  },
+  {
+    "section":"VISUAL CODES",
+    "phrase":"bright warm palette",
+    "doc_freq":1,
+    "total_score":0.8226,
+    "avg_score":0.8226,
+    "example_sentence":"Bright warm palette (orange, yellow, pink) evokes energy, intimacy, and playfulness; neat product-centered composition with shallow depth and soft props (pillows, crystals) frames items as lifestyle accessories rather than clinical goods.",
+    "example_files":"68b562f5000000001b022729_2_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"target audience urban",
+    "doc_freq":5,
+    "total_score":1.7181,
+    "avg_score":0.34362,
+    "example_sentence":"Promotes pragmatic, cost‑conscious consumption—“value tech” over luxury (mentions cheaper vs polyurethane); sells bodily comfort and safety (elasticity, durability) tied to everyda",
+    "example_files":"671b0cfc0000000021004788_0_探秘不同套套：为房事增添多彩体验🎉.jpg, 67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg, 662789e90000000001032135_4_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"image sells",
+    "doc_freq":5,
+    "total_score":1.6381,
+    "avg_score":0.32762,
+    "example_sentence":"The image sells modern reliability and discreet self-care—combining medical\/functional cues with luxury packaging to normalize intimate product consumption.",
+    "example_files":"6881fadd000000001c031cb2_0_不敢相信这里美成了电脑桌面.jpg, 671b0cfc0000000021004788_1_探秘不同套套：为房事增添多彩体验🎉.jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"young urban women",
+    "doc_freq":3,
+    "total_score":1.433,
+    "avg_score":0.4776666667,
+    "example_sentence":"Target audience: young urban women (20s–30s) who follow trends, prioritize appearance and discreet sexual health.",
+    "example_files":"68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg, 68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"target audience",
+    "doc_freq":3,
+    "total_score":1.1737,
+    "avg_score":0.3912333333,
+    "example_sentence":"Target audience: sexually active Chinese men (and partners) who value convenience, taste\/novelty (coffee flavor), and branded trust.",
+    "example_files":"6753f7b6000000000202ab2f_0_还有咖啡味的tt，浓郁咖啡…….jpg, 667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 65b4ef42000000002c012b83_0_咖啡味的？condom？ 套？.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"self care",
+    "doc_freq":3,
+    "total_score":1.0017,
+    "avg_score":0.3339,
+    "example_sentence":"The image sells a lifestyle of efficient self-care and discreet enhancement—modern convenience (single‑serve pods) and control over intimate needs. It appeals to urban, young adult",
+    "example_files":"6889c827000000002303b49c_0_让男票变🍉西瓜棒棒糖🍭.jpg, 682475fe0000000023011532_2_在小红书跟风入成功的小红套❗❗.jpg, 6889c827000000002303b49c_1_让男票变🍉西瓜棒棒糖🍭.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"sells modern",
+    "doc_freq":3,
+    "total_score":0.8259,
+    "avg_score":0.2753,
+    "example_sentence":"It sells a modern, discreet sexual wellness lifestyle that normalizes condom use while framing it as fashionable and tech-forward; conveys responsibility, intimacy and care (health",
+    "example_files":"68b562f5000000001b022729_1_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 671b0cfc0000000021004788_2_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"sexual health",
+    "doc_freq":2,
+    "total_score":1.1815,
+    "avg_score":0.59075,
+    "example_sentence":"The post sells responsible, informed modern femininity—sexual health framed as manageable, consumerized knowledge—appealing to urban, young adult women who value privacy, safety, and self-optimization.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"discreet sexual wellness",
+    "doc_freq":2,
+    "total_score":1.114,
+    "avg_score":0.557,
+    "example_sentence":"The post markets discreet sexual wellness\/men’s products (隐喻“小雨伞”\/TT) as part of a modern, responsible masculine lifestyle that values self-care, competence, and tasteful aesthetics; it targets urban young men (20s–30s) who consume lifestyle advice and care about image and performance.",
+    "example_files":"671b0cfc0000000021004788_2_探秘不同套套：为房事增添多彩体验🎉.jpg, 662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"urban young women",
+    "doc_freq":2,
+    "total_score":0.9854,
+    "avg_score":0.4927,
+    "example_sentence":"Target audience: urban young women (late millennials\/Gen Z) seeking discreet sexual agency and product literacy.",
+    "example_files":"682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"discreet self care",
+    "doc_freq":2,
+    "total_score":0.9021,
+    "avg_score":0.45105,
+    "example_sentence":"The image sells a hygiene-and-responsibility lifestyle—modern, health-conscious urban youth (especially women) who value safety, quality control, and informed consumption; it invok",
+    "example_files":"667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 671b0cfc0000000021004788_1_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"chinese women couples",
+    "doc_freq":2,
+    "total_score":0.9005,
+    "avg_score":0.45025,
+    "example_sentence":"The image sells normalized, discreet sexual wellness as part of everyday self‑care and lifestyle consumption—pleasure framed as safe, cute, and non‑threatening. Target audience: yo",
+    "example_files":"68b562f5000000001b022729_0_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 68ac3925000000001d03a539_0_沉浸式测评小雨衣...jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"urban chinese",
+    "doc_freq":2,
+    "total_score":0.8334,
+    "avg_score":0.4167,
+    "example_sentence":"It targets young, urban Chinese adults—especially heterosexual men learning “how to choose” as part of improving partner comfort and sexual technique.",
+    "example_files":"667943a5000000001f0061c4_1_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"post sells responsible",
+    "doc_freq":2,
+    "total_score":0.7722,
+    "avg_score":0.3861,
+    "example_sentence":"The post sells responsible, informed modern femininity—sexual health framed as manageable, consumerized knowledge—appealing to urban, young adult women who value privacy, safety, and self-optimization.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"discreet empowerment",
+    "doc_freq":2,
+    "total_score":0.7693,
+    "avg_score":0.38465,
+    "example_sentence":"It also signals modernity and discreet empowerment: control over pleasure framed as fashionable consumption.",
+    "example_files":"68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"young urban chinese",
+    "doc_freq":2,
+    "total_score":0.7588,
+    "avg_score":0.3794,
+    "example_sentence":"It markets a normalized, health-conscious, sex-positive lifestyle—framing condoms as everyday consumer choices rather than shameful items. Target audience is young, urban Chinese w",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"audience urban",
+    "doc_freq":2,
+    "total_score":0.714,
+    "avg_score":0.357,
+    "example_sentence":"The image sells responsible, empowered intimacy and self-care framed as everyday consumer choice, aligning safety with youthfulness and convenience. Target audience: urban, digital",
+    "example_files":"662789e90000000001032135_6_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 6881fadd000000001c031cb2_2_不敢相信这里美成了电脑桌面.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"image sells modern",
+    "doc_freq":2,
+    "total_score":0.677,
+    "avg_score":0.3385,
+    "example_sentence":"The image sells a modern, health-conscious intimate lifestyle that normalizes sexual health within everyday feminine aesthetics; it targets young urban Chinese women (post-90s\/00s)",
+    "example_files":"68b562f5000000001b022729_0_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"discreet",
+    "doc_freq":2,
+    "total_score":0.5686,
+    "avg_score":0.2843,
+    "example_sentence":"Target audience is young, urban Chinese women and couples comfortable with discreet discussion of sex, aesthetics, and self-care.",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"tasteful",
+    "doc_freq":2,
+    "total_score":0.5562,
+    "avg_score":0.2781,
+    "example_sentence":"Markets a discreet modern sensuality—combining hygiene, aesthetics, and intimate pleasure—framed as tasteful self-care rather than crude sexuality.",
+    "example_files":"6889c827000000002303b49c_0_让男票变🍉西瓜棒棒糖🍭.jpg, 68c106f7000000001d01c74c_0_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"targets young urban",
+    "doc_freq":2,
+    "total_score":0.5553,
+    "avg_score":0.27765,
+    "example_sentence":"It targets young urban women (post-90s\/00s) comfortable with consumerized sexuality and aestheticized private life.",
+    "example_files":"68c106f7000000001d01c74c_2_情侣一定要知道的这10个冷知识.jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"post sells",
+    "doc_freq":2,
+    "total_score":0.5357,
+    "avg_score":0.26785,
+    "example_sentence":"The post sells discreet sensuality packaged as lifestyle — safe, sweet, and self‑indulgent romance rather than raw sexuality; it appeals to urban, upwardly mobile young women\/couples who value aesthetics, self‑care, and curated experiences (小资, ritualized intimacy).",
+    "example_files":"6650401e00000000160130d4_2_vocal！太超前了，用了根本舍不得换.jpg, 68b562f5000000001b022729_3_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"women post",
+    "doc_freq":2,
+    "total_score":0.4997,
+    "avg_score":0.24985,
+    "example_sentence":"The image sells sexual intimacy as trendy, safe, and playful—aligning contraception with self-care and romance rather than guilt. It targets young urban women (post-90s\/00s) comfor",
+    "example_files":"68c106f7000000001d01c74c_2_情侣一定要知道的这10个冷知识.jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"post commodifies",
+    "doc_freq":2,
+    "total_score":0.4502,
+    "avg_score":0.2251,
+    "example_sentence":"The post commodifies responsible adult sexuality as self-care and romantic competence (为爱负责\/“为爱鼓掌” motif), aligning condom choice with modern, educated urbanity.",
+    "example_files":"667943a5000000001f0061c4_1_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"targets",
+    "doc_freq":2,
+    "total_score":0.2758,
+    "avg_score":0.1379,
+    "example_sentence":"Targets middle-class urban shoppers who value cost-performance and product literacy, especially young homeowners and parenting audiences.",
+    "example_files":"666f9fc4000000000d00cb3c_0_吉隆坡-杜蕾斯 巧克力味TT-猎奇.jpg, 662789e90000000001032135_3_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"CULTURAL MEANING",
+    "phrase":"intimacy 保姆级 nanny",
+    "doc_freq":1,
+    "total_score":0.7234,
+    "avg_score":0.7234,
+    "example_sentence":"The image sells safe-sex responsibility framed as modern, caring intimacy—“保姆级” (nanny-level) implies service, reliability, and ease for busy couples; it targets young urban couple",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sexual",
+    "doc_freq":6,
+    "total_score":2.3323,
+    "avg_score":0.3887166667,
+    "example_sentence":"Potentially sensitive topics (intimate\/sexual products implied by material discussion) are depersonalized through clinical language, \"科普\" framing, and focus on material properties, turning embarrassment into objective information and reducing stigma.",
+    "example_files":"667943a5000000001f0061c4_2_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 662789e90000000001032135_5_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"explicit",
+    "doc_freq":5,
+    "total_score":1.3423,
+    "avg_score":0.26846,
+    "example_sentence":"Sensitive sexual content is defused through medicalized language (“测量”、“科普”), cute visuals, and an explicit disclaimer (“仅供参考，无不良引导”), which reframes the topic as harmless, educational, and non-sexual, minimizing moral panic.",
+    "example_files":"667943a5000000001f0061c4_0_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_1_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"potentially",
+    "doc_freq":5,
+    "total_score":0.9145,
+    "avg_score":0.1829,
+    "example_sentence":"Potentially sensitive topics (intimate\/sexual products implied by material discussion) are depersonalized through clinical language, \"科普\" framing, and focus on material properties, turning embarrassment into objective information and reducing stigma.",
+    "example_files":"662789e90000000001032135_5_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 682475fe0000000023011532_3_在小红书跟风入成功的小红套❗❗.jpg, 682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sexual content",
+    "doc_freq":3,
+    "total_score":1.8005,
+    "avg_score":0.6001666667,
+    "example_sentence":"Sexual content is defanged through humor, euphemistic language and peer banter (emoji, “试试三\/互试”), and by framing the item as a consumer gadget with numeric specs, shifting focus from erotic imagery to product features and social playfulness.",
+    "example_files":"68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 68b562f5000000001b022729_3_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 6753f7b6000000000202ab2f_1_还有咖啡味的tt，浓郁咖啡…….jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sensitive",
+    "doc_freq":3,
+    "total_score":1.4826,
+    "avg_score":0.4942,
+    "example_sentence":"Sensitive sexual and disease-related content is softened through pastel colors, emoji-like symbols, and pedagogical framing (“basic knowledge”), transforming taboo into lifestyle knowledge and reducing embarrassment via approachable visual cues.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 667943a5000000001f0061c4_2_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"content",
+    "doc_freq":3,
+    "total_score":1.061,
+    "avg_score":0.3536666667,
+    "example_sentence":"Sexual content is depersonalized and medicalized—textual explanation, absence of sexual imagery, pastel “cute” palette, and rational tips transform a taboo topic into acceptable consumer advice, reducing embarrassment and stigma.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68b562f5000000001b022729_0_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"uses",
+    "doc_freq":3,
+    "total_score":0.9106,
+    "avg_score":0.3035333333,
+    "example_sentence":"Uses food imagery (coffee flavor), scientific-sounding phrasing (\"物理延时\"\/Natural Lasting) and playful mascot to depathologize sex and avoid explicitness, framing contraception\/performance as everyday lifestyle choices rather than intimate taboo.",
+    "example_files":"662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg, 65b4ef42000000002c012b83_0_咖啡味的？condom？ 套？.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"euphemistic",
+    "doc_freq":3,
+    "total_score":0.828,
+    "avg_score":0.276,
+    "example_sentence":"Sensitivity around sex is neutralized by productizing and aestheticizing — euphemistic cues (coffee scent, minimalist packaging), clinical metrics (0.01mm), and supermarket context transform intimacy into a normalized consumer choice rather than moral discourse.",
+    "example_files":"6753f7b6000000000202ab2f_0_还有咖啡味的tt，浓郁咖啡…….jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 6889c827000000002303b49c_2_让男票变🍉西瓜棒棒糖🍭.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"imagery",
+    "doc_freq":3,
+    "total_score":0.8137,
+    "avg_score":0.2712333333,
+    "example_sentence":"Sexuality is euphemized via confectionery metaphors (chocolate heart imagery and “脑袋” copy play), domestic setting, and lighthearted copywriting, turning potential embarrassment into delicious, benign indulgence.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 6650401e00000000160130d4_3_vocal！太超前了，用了根本舍不得换.jpg, 667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"cute",
+    "doc_freq":3,
+    "total_score":0.5481,
+    "avg_score":0.1827,
+    "example_sentence":"Uses euphemistic cues (floral\/fruity flavor labels, snack-like jars, cute cartoons) and kawaii packaging to infantilize and de-sexualize the product, reducing stigma.",
+    "example_files":"662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg, 65e88d73000000000b00ff37_0_泰国特色限定款tt~巧克力味~草莓味、糖果味.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sensitive subject matter",
+    "doc_freq":2,
+    "total_score":1.5138,
+    "avg_score":0.7569,
+    "example_sentence":"Sensitive subject matter is domesticated via educational framing (“basic knowledge”), euphemistic language, pastel palette, and checklist format—transforming erotic\/medical anxiety into neutral, manageable info.",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 671b0cfc0000000021004788_1_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sexual content sanitized",
+    "doc_freq":2,
+    "total_score":1.4291,
+    "avg_score":0.71455,
+    "example_sentence":"Sexual content is sanitized via design cues (luxury packaging, poetic Chinese line on box) and euphemistic visual language—focus on object as lifestyle accessory rather than bodily",
+    "example_files":"68b562f5000000001b022729_2_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 671b0cfc0000000021004788_3_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sensitive content",
+    "doc_freq":2,
+    "total_score":1.2008,
+    "avg_score":0.6004,
+    "example_sentence":"Sensitive content is neutralized through clinical\/instructional tone, euphemisms (“小兄弟”) and partial censorship (“xing” instead of 性), converting taboo sexual talk into a how‑to tutorial that feels educational rather than transgressive.",
+    "example_files":"68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg, 667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"sexual content softened",
+    "doc_freq":2,
+    "total_score":1.1511,
+    "avg_score":0.57555,
+    "example_sentence":"Sexual content is softened through food metaphors (chocolate), domestic setting (coffee table), and playful copy—transforming a condom into a benign mood-enhancer and thus depoliti",
+    "example_files":"68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg, 6650401e00000000160130d4_1_vocal！太超前了，用了根本舍不得换.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"euphemistic language 套套",
+    "doc_freq":2,
+    "total_score":1.0661,
+    "avg_score":0.53305,
+    "example_sentence":"Euphemistic language (“套套” casual term) plus beauty-oriented imagery neutralize embarrassment; humor and listicle format (10 “cold facts,” “#7 many don’t know”) create low-stakes c",
+    "example_files":"68c106f7000000001d01c74c_0_情侣一定要知道的这10个冷知识.jpg, 68c106f7000000001d01c74c_3_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"stigma",
+    "doc_freq":2,
+    "total_score":0.7859,
+    "avg_score":0.39295,
+    "example_sentence":"Potentially sensitive topics (intimate\/sexual products implied by material discussion) are depersonalized through clinical language, \"科普\" framing, and focus on material properties, turning embarrassment into objective information and reducing stigma.",
+    "example_files":"662789e90000000001032135_5_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"health",
+    "doc_freq":2,
+    "total_score":0.6641,
+    "avg_score":0.33205,
+    "example_sentence":"Sensitive intimacies\/sexual health are medicalized and euphemized (科学养肾) and coupled with neutral designer aesthetics to depoliticize and normalize the topic, turning private worries into mainstream self-care.",
+    "example_files":"68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg, 662789e90000000001032135_7_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"humor",
+    "doc_freq":2,
+    "total_score":0.6341,
+    "avg_score":0.31705,
+    "example_sentence":"Taboos are defused through metaphoric framing (chocolate), humor, and lifestyle styling rather than explicit sexual depiction; the product is presented as a cute, edible-like object and café scene, softening potential shame and making the topic socially palatable.",
+    "example_files":"6650401e00000000160130d4_0_vocal！太超前了，用了根本舍不得换.jpg, 68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"moral",
+    "doc_freq":2,
+    "total_score":0.6283,
+    "avg_score":0.31415,
+    "example_sentence":"Uses euphemism (“小雨伞”), cute emoticons, and design-first framing to defang explicitness; the instructional tone (“how to choose”) reframes sex as consumer choice and personal optimization rather than moral scrutiny.",
+    "example_files":"662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"overt",
+    "doc_freq":2,
+    "total_score":0.4353,
+    "avg_score":0.21765,
+    "example_sentence":"Potentially sensitive themes (sexuality, consumerism of intimacy) are softened through cutesy emojis, playful text, and familial wording (“姐”), framing desire as wholesome romance and self-care rather than overt seduction.",
+    "example_files":"682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg, 68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"advice reducing embarrassment",
+    "doc_freq":2,
+    "total_score":0.4271,
+    "avg_score":0.21355,
+    "example_sentence":"Sexual content is depersonalized and medicalized—textual explanation, absence of sexual imagery, pastel “cute” palette, and rational tips transform a taboo topic into acceptable co",
+    "example_files":"667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"normalize",
+    "doc_freq":2,
+    "total_score":0.3951,
+    "avg_score":0.19755,
+    "example_sentence":"Sensitive intimacies\/sexual health are medicalized and euphemized (科学养肾) and coupled with neutral designer aesthetics to depoliticize and normalize the topic, turning private worries into mainstream self-care.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 662789e90000000001032135_7_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"reducing",
+    "doc_freq":2,
+    "total_score":0.2901,
+    "avg_score":0.14505,
+    "example_sentence":"Potentially sensitive topics (intimate\/sexual products implied by material discussion) are depersonalized through clinical language, \"科普\" framing, and focus on material properties, turning embarrassment into objective information and reducing stigma.",
+    "example_files":"662789e90000000001032135_5_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"pastel",
+    "doc_freq":2,
+    "total_score":0.2708,
+    "avg_score":0.1354,
+    "example_sentence":"Clinical metrics (thickness in mm), neutral terminology, and educational framing transform a sensitive topic into rational, manageable knowledge—medicalized detail + pastel aesthetics desexualize stigma while subtly promising sensual benefit.",
+    "example_files":"6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"TABOO NAVIGATION",
+    "phrase":"potential",
+    "doc_freq":2,
+    "total_score":0.227,
+    "avg_score":0.1135,
+    "example_sentence":"Sensitive sexual-health topics are de-stigmatized via clinical-sounding terms (“科普”, “过期”), softening language with metaphors (“静静的退休”) and a reassuring, casual tone—transforming potential embarrassment into manageable, everyday advice.",
+    "example_files":"662789e90000000001032135_6_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 680b9491000000001b025adf_0_恋爱保鲜术！给生活加点\"橙\"意.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"uses",
+    "doc_freq":10,
+    "total_score":2.8891,
+    "avg_score":0.28891,
+    "example_sentence":"Uses Xiaohongshu signifiers—step-by-step checklist, emoji-like badges, lifestyle photography aesthetics, and an informal advisory voice—mimicking influencer\/UGC authenticity.",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68b562f5000000001b022729_1_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 68c106f7000000001d01c74c_2_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"uses xiaohongshu authenticity",
+    "doc_freq":6,
+    "total_score":4.5794,
+    "avg_score":0.7632333333,
+    "example_sentence":"Uses Xiaohongshu authenticity markers—concise explanatory text, soft lifestyle visuals, and community-friendly tone—suggesting peer-to-peer advice rather than corporate advertising.",
+    "example_files":"667943a5000000001f0061c4_2_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"uses xiaohongshu tropes",
+    "doc_freq":6,
+    "total_score":4.2083,
+    "avg_score":0.7013833333,
+    "example_sentence":"Uses Xiaohongshu tropes—informational, peer‑to‑peer tone, numbered pros\/cons, conversational Mandarin, and a nonce authority (“正经科普”) to mimic authentic reviewer\/influencer voice; visual simplicity mirrors popular note cards for easy reposting.",
+    "example_files":"662789e90000000001032135_4_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 682475fe0000000023011532_3_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"xiaohongshu authenticity cues",
+    "doc_freq":5,
+    "total_score":3.7041,
+    "avg_score":0.74082,
+    "example_sentence":"Uses Xiaohongshu authenticity cues—casual lifestyle photography, first-person caption voice in overlay, and implicit endorsement style rather than overt advertising.",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg, 68c106f7000000001d01c74c_4_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"uses xiaohongshu signifiers",
+    "doc_freq":3,
+    "total_score":2.2139,
+    "avg_score":0.7379666667,
+    "example_sentence":"Uses Xiaohongshu signifiers—step-by-step checklist, emoji-like badges, lifestyle photography aesthetics, and an informal advisory voice—mimicking influencer\/UGC authenticity.",
+    "example_files":"68b562f5000000001b022729_1_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 68c106f7000000001d01c74c_2_情侣一定要知道的这10个冷知识.jpg, 662789e90000000001032135_2_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"xiaohongshu cues",
+    "doc_freq":3,
+    "total_score":2.0885,
+    "avg_score":0.6961666667,
+    "example_sentence":"Xiaohongshu cues — polished lifestyle shot, emoji\/colloquial overlay text, and testimonial tone — signal peer recommendation and influencer endorsement; manicure, bubble tea, and neat typography function as authenticity markers and class signaling.",
+    "example_files":"6650401e00000000160130d4_2_vocal！太超前了，用了根本舍不得换.jpg, 667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"micro",
+    "doc_freq":3,
+    "total_score":0.7435,
+    "avg_score":0.2478333333,
+    "example_sentence":"The image follows Xiaohongshu tropes—clean flat-lay, product-first storytelling, and subtle lifestyle cues rather than explicit endorsements; likely intended for KOLs\/micro-influencers who post “discovery” content with product shots, short captions, and emoji-friendly language to signal authenticity and peer recommendation.",
+    "example_files":"671b0cfc0000000021004788_2_探秘不同套套：为房事增添多彩体验🎉.jpg, 6889c827000000002303b49c_2_让男票变🍉西瓜棒棒糖🍭.jpg, 68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"xiaohongshu markers",
+    "doc_freq":2,
+    "total_score":1.5364,
+    "avg_score":0.7682,
+    "example_sentence":"Xiaohongshu markers: first-person hand-held shots, product variety grid, checklist\/emoji overlays, and short Chinese captions—signals user-generated authenticity and discovery.",
+    "example_files":"667943a5000000001f0061c4_6_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 65e88d73000000000b00ff37_0_泰国特色限定款tt~巧克力味~草莓味、糖果味.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"xiaohongshu cues present",
+    "doc_freq":2,
+    "total_score":1.4293,
+    "avg_score":0.71465,
+    "example_sentence":"Xiaohongshu cues are present: username\/branding watermark, checklist\/infographic format, and conversational copy that reads like an influencer post or mini-guide—signaling peer-to-",
+    "example_files":"6881fadd000000001c031cb2_2_不敢相信这里美成了电脑桌面.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"image uses xiaohongshu",
+    "doc_freq":2,
+    "total_score":1.1927,
+    "avg_score":0.59635,
+    "example_sentence":"The image uses Xiaohongshu tropes — punchy caption-as-visual, vertical smartphone composition, and the platform watermark — signaling native content.",
+    "example_files":"67244d26000000001b011ced_0_往用过的套套里放辣椒酱致人伤害，有多刑？.jpg, 6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"authenticity markers",
+    "doc_freq":2,
+    "total_score":1.0207,
+    "avg_score":0.51035,
+    "example_sentence":"These are authenticity markers suggesting influencer curation rather than corporate ad copy.",
+    "example_files":"68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 680b9491000000001b025adf_0_恋爱保鲜术！给生活加点\"橙\"意.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"watermark",
+    "doc_freq":2,
+    "total_score":0.8805,
+    "avg_score":0.44025,
+    "example_sentence":"Features typical 小红书 cues—personal handle watermark (@小花的恋爱指南), pastel visual branding, short didactic copy, and an influencer-as-friend voice that signals peer expertise and perceived authenticity.",
+    "example_files":"6881fadd000000001c031cb2_1_不敢相信这里美成了电脑桌面.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"perceived authenticity",
+    "doc_freq":2,
+    "total_score":0.8473,
+    "avg_score":0.42365,
+    "example_sentence":"The tone mimics micro-influencer expertise—informational authority without overt celebrity presence—invoking perceived authenticity and peer-to-peer advice.",
+    "example_files":"662789e90000000001032135_3_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"polished ad",
+    "doc_freq":2,
+    "total_score":0.8139,
+    "avg_score":0.40695,
+    "example_sentence":"The image uses Xiaohongshu tropes—flat-lay, product lineup, and conversational overlay copy—mimicking influencer unboxing\/recommendation formats; authenticity markers include multiple similar items implying trial\/use and a casual home setting that suggests lived experience rather than polished ad.",
+    "example_files":"6889c827000000002303b49c_1_让男票变🍉西瓜棒棒糖🍭.jpg, 6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"peer recommendation",
+    "doc_freq":2,
+    "total_score":0.7962,
+    "avg_score":0.3981,
+    "example_sentence":"The aesthetic mimics influencer curation to produce trust via perceived peer recommendation.",
+    "example_files":"6889c827000000002303b49c_0_让男票变🍉西瓜棒棒糖🍭.jpg, 65e88d73000000000b00ff37_0_泰国特色限定款tt~巧克力味~草莓味、糖果味.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"lifestyle",
+    "doc_freq":2,
+    "total_score":0.5146,
+    "avg_score":0.2573,
+    "example_sentence":"Uses Xiaohongshu tropes—clean, feed-friendly graphic, watermark\/handle for perceived authorship, and checklist tips that mimic influencer “quick guide” posts; these act as authenticity cues (peer advice, lifestyle content rather than hard advertising).",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 67cfbc1c000000002602cfbc_0_套套的隐藏技能.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"handle",
+    "doc_freq":2,
+    "total_score":0.4559,
+    "avg_score":0.22795,
+    "example_sentence":"Includes Xiaohongshu authenticity cues—creator handle “@小花的恋爱指南,” casual language, and lifestyle framing—mimicking influencer mini-guides and user-generated “must-see” lists that promise practical tips and relatability.",
+    "example_files":"66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"overlay text",
+    "doc_freq":2,
+    "total_score":0.4555,
+    "avg_score":0.22775,
+    "example_sentence":"Uses Xiaohongshu signals—casual recommendation tone, prominent overlay text, polished flat-lay, and visible packaging details (expiry, small-quantity boxes) to convey authenticity and trialability.",
+    "example_files":"6650401e00000000160130d4_0_vocal！太超前了，用了根本舍不得换.jpg, 682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"signaling",
+    "doc_freq":2,
+    "total_score":0.4406,
+    "avg_score":0.2203,
+    "example_sentence":"Includes Xiaohongshu markers—casual subheadings, emoji, @handle, and a “guide” claim—signaling influencer\/UGC credibility; visual polish plus colloquial voice mimics trusted lifestyle posts that blend personal advice with product promotion.",
+    "example_files":"662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 68ac3925000000001d03a539_0_沉浸式测评小雨衣...jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"ugc",
+    "doc_freq":2,
+    "total_score":0.4335,
+    "avg_score":0.21675,
+    "example_sentence":"Uses Xiaohongshu credibility cues—stylized lifestyle photography, casual exclamatory overlay text, and implicit recommendation tone—mimicking UGC\/influencer posts to signal authenticity and peer endorsement.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 6650401e00000000160130d4_3_vocal！太超前了，用了根本舍不得换.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"mini",
+    "doc_freq":2,
+    "total_score":0.3819,
+    "avg_score":0.19095,
+    "example_sentence":"The slide mimics mini-blog “knowledge post” formats favored by influencers who blend personal recommendation with tech specs.",
+    "example_files":"662789e90000000001032135_5_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"testimonial",
+    "doc_freq":2,
+    "total_score":0.3332,
+    "avg_score":0.1666,
+    "example_sentence":"Screenshot shows Xiaohongshu commerce\/UI cues—price, cashback badge, quantity label—mimicking review\/shop posts; legitimacy is signaled through clear packaging shots, product close-ups, and brand name prominence rather than personal testimonial in this image.",
+    "example_files":"682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg, 65b4ef42000000002c012b83_0_咖啡味的？condom？ 套？.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"includes",
+    "doc_freq":2,
+    "total_score":0.316,
+    "avg_score":0.158,
+    "example_sentence":"Includes Xiaohongshu markers—casual subheadings, emoji, @handle, and a “guide” claim—signaling influencer\/UGC credibility; visual polish plus colloquial voice mimics trusted lifestyle posts that blend personal advice with product promotion.",
+    "example_files":"662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"like",
+    "doc_freq":2,
+    "total_score":0.2811,
+    "avg_score":0.14055,
+    "example_sentence":"Xiaohongshu cues are present: username\/branding watermark, checklist\/infographic format, and conversational copy that reads like an influencer post or mini-guide—signaling peer-to-peer authenticity and shareability.",
+    "example_files":"680b9491000000001b025adf_0_恋爱保鲜术！给生活加点\"橙\"意.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"PLATFORM CONVENTIONS",
+    "phrase":"xiaohongshu cues include",
+    "doc_freq":1,
+    "total_score":0.8216,
+    "avg_score":0.8216,
+    "example_sentence":"Xiaohongshu cues include product-as-lifestyle shot, close crop for ASMR-like detail, and implied user endorsement (studio-polished but personal angle), aligning with user trust economy and shoppable discovery culture (soft review vibe rather than hard advertising).",
+    "example_files":"671b0cfc0000000021004788_3_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion",
+    "doc_freq":5,
+    "total_score":3.2517,
+    "avg_score":0.65034,
+    "example_sentence":"Persuasion hinges on associative transfer—linking product with comfort, sweetness, and social desirability; scarcity of explicit sexual language plus sensory imagery reduces cognitive resistance, encouraging purchase as a low-risk, pleasurable ritual.",
+    "example_files":"6650401e00000000160130d4_1_vocal！太超前了，用了根本舍不得换.jpg, 667943a5000000001f0061c4_5_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 66bc6d400000000009014a44_1_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"proof",
+    "doc_freq":5,
+    "total_score":0.7472,
+    "avg_score":0.14944,
+    "example_sentence":"Persuasion hinges on hedonic framing + safety reassurance: novelty and sensory pleasure (chocolate association) reduce cognitive resistance, while brand cues and lifestyle context provide trust and social proof, prompting low-effort trial.",
+    "example_files":"6881fadd000000001c031cb2_0_不敢相信这里美成了电脑桌面.jpg, 671b0cfc0000000021004788_1_探秘不同套套：为房事增添多彩体验🎉.jpg, 67244d26000000001b011ced_0_往用过的套套里放辣椒酱致人伤害，有多刑？.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuades",
+    "doc_freq":4,
+    "total_score":1.7019,
+    "avg_score":0.425475,
+    "example_sentence":"Persuades by aspiration and normalization: linking the product to desirable everyday aesthetics reduces stigma and reframes purchase as a tasteful lifestyle upgrade rather than a purely functional act.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 6650401e00000000160130d4_3_vocal！太超前了，用了根本舍不得换.jpg, 68c106f7000000001d01c74c_2_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"signaling",
+    "doc_freq":4,
+    "total_score":1.0738,
+    "avg_score":0.26845,
+    "example_sentence":"Core persuasion lever is affective association—linking sensory pleasure (taste, sweetness) to safety and desirability to reduce purchase friction; social signaling (trendy brand, lifestyle conformity) provides normative justification for consumption.",
+    "example_files":"666f9fc4000000000d00cb3c_0_吉隆坡-杜蕾斯 巧克力味TT-猎奇.jpg, 6889c827000000002303b49c_2_让男票变🍉西瓜棒棒糖🍭.jpg, 6875f921000000001002683c_0_小红书测评！！前后历时两个月，莫辜负.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"stigma",
+    "doc_freq":3,
+    "total_score":0.8584,
+    "avg_score":0.2861333333,
+    "example_sentence":"The core persuasion is aspirational association—linking product use to elevated emotional states (幸福感 up) and private rituals—combined with hedonic framing (sweetness, smoothness) to reduce stigma and motivate trial through desire for curated, Instagrammable intimacy.",
+    "example_files":"6650401e00000000160130d4_2_vocal！太超前了，用了根本舍不得换.jpg, 6650401e00000000160130d4_3_vocal！太超前了，用了根本舍不得换.jpg, 68b562f5000000001b022729_3_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"leverages",
+    "doc_freq":3,
+    "total_score":0.5203,
+    "avg_score":0.1734333333,
+    "example_sentence":"Leverages social proof and anxiety-reduction—promising expert-like guidance to avoid embarrassment (size mismatch) while offering aspirational aesthetics; persuasion is through reassurance, identity signaling, and the desire to appear competent and stylish in private domains.",
+    "example_files":"68b562f5000000001b022729_3_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 662789e90000000001032135_0_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 68c106f7000000001d01c74c_0_情侣一定要知道的这10个冷知识.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"choice",
+    "doc_freq":3,
+    "total_score":0.5117,
+    "avg_score":0.1705666667,
+    "example_sentence":"Persuasion relies on aspirational identification and social proof: consumers purchase both functionality (safety, quality) and symbolic capital (stylish, modern identity), reducing cognitive dissonance around taboo consumption by packaging it as a trendy, normalized choice.",
+    "example_files":"68b562f5000000001b022729_2_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 671b0cfc0000000021004788_2_探秘不同套套：为房事增添多彩体验🎉.jpg, 671b0cfc0000000021004788_3_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"core persuasion aspirational",
+    "doc_freq":2,
+    "total_score":1.4373,
+    "avg_score":0.71865,
+    "example_sentence":"Core persuasion is aspirational identity signaling — buying into the product\/community promises symbolic capital (confidence, maturity) more than functional benefits, leveraging FO",
+    "example_files":"6650401e00000000160130d4_2_vocal！太超前了，用了根本舍不得换.jpg, 662789e90000000001032135_7_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion relies anxiety",
+    "doc_freq":2,
+    "total_score":1.3635,
+    "avg_score":0.68175,
+    "example_sentence":"Persuasion relies on anxiety reduction and empowerment—informational framing + attractive design builds trust and lowers barriers to purchase by making choice feel informed, safe, ",
+    "example_files":"667943a5000000001f0061c4_4_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 66bc6d400000000009014a44_0_你真的会选吗❓保姆级挑选TT指南来喽～.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion relies scarcity",
+    "doc_freq":2,
+    "total_score":1.3532,
+    "avg_score":0.6766,
+    "example_sentence":"Persuasion relies on scarcity of cognitive dissonance—combining utilitarian reassurance (clinical packaging) with luxury signaling (gold typography) to justify purchase as both res",
+    "example_files":"682475fe0000000023011532_2_在小红书跟风入成功的小红套❗❗.jpg, 671b0cfc0000000021004788_1_探秘不同套套：为房事增添多彩体验🎉.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion rests social",
+    "doc_freq":2,
+    "total_score":1.3186,
+    "avg_score":0.6593,
+    "example_sentence":"Persuasion rests on social normalization + hedonic-functional promise: combine sensory pleasure with technical assurance to reduce purchase friction and invoke FOMO\/status signalin",
+    "example_files":"6753f7b6000000000202ab2f_0_还有咖啡味的tt，浓郁咖啡…….jpg, 68ac3925000000001d03a539_0_沉浸式测评小雨衣...jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion hinges identity",
+    "doc_freq":2,
+    "total_score":1.2267,
+    "avg_score":0.61335,
+    "example_sentence":"Persuasion hinges on identity and social signaling—buying the right condom is presented as both responsible self-care and a way to demonstrate modern romantic competence, reducing ",
+    "example_files":"6889c827000000002303b49c_2_让男票变🍉西瓜棒棒糖🍭.jpg, 667943a5000000001f0061c4_0_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"perceived",
+    "doc_freq":2,
+    "total_score":0.8932,
+    "avg_score":0.4466,
+    "example_sentence":"Persuasion relies on social proof and identity aspiration: viewers imagine adopting the look to access the same small-status benefits and emotional uplift, prompting trial through perceived relatability and attainable luxury.",
+    "example_files":"68c106f7000000001d01c74c_1_情侣一定要知道的这10个冷知识.jpg, 682475fe0000000023011532_0_在小红书跟风入成功的小红套❗❗.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"buying product",
+    "doc_freq":2,
+    "total_score":0.8918,
+    "avg_score":0.4459,
+    "example_sentence":"Persuasion hinges on identity signaling—buying this product equals membership in a tasteful, health-conscious social group; aesthetics reduce cognitive resistance to taboo categori",
+    "example_files":"68a2d531000000001d011274_0_夜生活来点新花样！真的很懂小情侣~.jpg, 6889c827000000002303b49c_2_让男票变🍉西瓜棒棒糖🍭.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"risk reduction",
+    "doc_freq":2,
+    "total_score":0.6895,
+    "avg_score":0.34475,
+    "example_sentence":"Persuasion relies on competence signaling and risk reduction: concrete metrics + normative warnings reduce uncertainty and anxiety, nudging purchase\/trial by promising control, safety, and improved sexual performance.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 68a2d531000000001d011274_2_夜生活来点新花样！真的很懂小情侣~.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"taste responsible",
+    "doc_freq":2,
+    "total_score":0.6253,
+    "avg_score":0.31265,
+    "example_sentence":"Core persuasion blends social-proof normalization with identity signaling—buying this product communicates modernity, taste, and responsible intimacy, converting taboo attenuation ",
+    "example_files":"671b0cfc0000000021004788_0_探秘不同套套：为房事增添多彩体验🎉.jpg, 6889c827000000002303b49c_0_让男票变🍉西瓜棒棒糖🍭.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"normative",
+    "doc_freq":2,
+    "total_score":0.618,
+    "avg_score":0.309,
+    "example_sentence":"Core persuasion lever is affective association—linking sensory pleasure (taste, sweetness) to safety and desirability to reduce purchase friction; social signaling (trendy brand, lifestyle conformity) provides normative justification for consumption.",
+    "example_files":"667943a5000000001f0061c4_3_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg, 666f9fc4000000000d00cb3c_0_吉隆坡-杜蕾斯 巧克力味TT-猎奇.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"social proof",
+    "doc_freq":2,
+    "total_score":0.4742,
+    "avg_score":0.2371,
+    "example_sentence":"Leverages loss-aversion and conformity: fear of choosing wrong (“过大or过小…容易导致‘漏雨’”) plus social proof of the “普遍适用” middle option drives risk-averse purchases; clear metrics reduce cognitive load and justify buying decisions.",
+    "example_files":"662789e90000000001032135_1_男生必读|挑选⛱手册🔞size和功能咋选？.jpg, 662789e90000000001032135_4_男生必读|挑选⛱手册🔞size和功能咋选？.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"associative",
+    "doc_freq":2,
+    "total_score":0.3944,
+    "avg_score":0.1972,
+    "example_sentence":"Persuasion hinges on associative transfer—linking product with comfort, sweetness, and social desirability; scarcity of explicit sexual language plus sensory imagery reduces cognitive resistance, encouraging purchase as a low-risk, pleasurable ritual.",
+    "example_files":"680b9491000000001b025adf_1_恋爱保鲜术！给生活加点\"橙\"意.jpg, 6650401e00000000160130d4_1_vocal！太超前了，用了根本舍不得换.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"convert",
+    "doc_freq":2,
+    "total_score":0.1707,
+    "avg_score":0.08535,
+    "example_sentence":"Persuades by reducing anxiety and offering control—combining sensory appeal (flavor, warm color) with functional promise (delay) to convert performance concerns into a purchasable, low-stigma solution.",
+    "example_files":"68b562f5000000001b022729_2_恋爱告急🤯想要回归热烈先告别一成不变~🤭.jpg, 65b4ef42000000002c012b83_0_咖啡味的？condom？ 套？.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"core persuasion identity",
+    "doc_freq":1,
+    "total_score":0.7982,
+    "avg_score":0.7982,
+    "example_sentence":"Core persuasion is identity projection—viewers are invited to imagine themselves achieving calm, status, and authenticity by adopting the promoted lifestyle or product; vivid senso",
+    "example_files":"6881fadd000000001c031cb2_0_不敢相信这里美成了电脑桌面.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"core persuasion experiential",
+    "doc_freq":1,
+    "total_score":0.7831,
+    "avg_score":0.7831,
+    "example_sentence":"The core persuasion is experiential aspiration—promise of unique, sharable memories and social distinction. Visual scarcity (vast empty landscape) triggers desire for exclusivity; ",
+    "example_files":"6881fadd000000001c031cb2_2_不敢相信这里美成了电脑桌面.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"core persuasion lever",
+    "doc_freq":1,
+    "total_score":0.7779,
+    "avg_score":0.7779,
+    "example_sentence":"Core persuasion lever is affective association—linking sensory pleasure (taste, sweetness) to safety and desirability to reduce purchase friction; social signaling (trendy brand, lifestyle conformity) provides normative justification for consumption.",
+    "example_files":"666f9fc4000000000d00cb3c_0_吉隆坡-杜蕾斯 巧克力味TT-猎奇.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"primary persuasion risk",
+    "doc_freq":1,
+    "total_score":0.7745,
+    "avg_score":0.7745,
+    "example_sentence":"The primary persuasion is risk-reduction and reassurance—combining authoritative information with relatable aesthetics to lower cognitive and social barriers, prompting purchase\/us",
+    "example_files":"667943a5000000001f0061c4_7_“避孕套”你真的选对了吗⁉️选择技巧全攻略.jpg"
+  },
+  {
+    "section":"CONSUMER PSYCHOLOGY",
+    "phrase":"persuasion relies identity",
+    "doc_freq":1,
+    "total_score":0.7402,
+    "avg_score":0.7402,
+    "example_sentence":"Persuasion relies on identity-based aspiration and social proof—users imagine improved romantic life and peer approval by adopting the look\/product, converting emotional desire (sw",
+    "example_files":"682475fe0000000023011532_1_在小红书跟风入成功的小红套❗❗.jpg"
+  }
+]
