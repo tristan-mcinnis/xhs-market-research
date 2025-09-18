@@ -42,24 +42,26 @@ from dataclasses import dataclass
 import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
+from config_loader import get_config
 
 # -----------------------------
 # Config
 # -----------------------------
-MODEL = "gpt-5-mini"
-MAX_OUTPUT_TOKENS = 1200
-RETRY_MAX_OUTPUT_TOKENS = 1800
-REASONING_EFFORT = "medium"
-VERBOSITY = "medium"
-RATE_LIMIT_DELAY = 2
+# Load configuration
+config = get_config()
 
-CANON_SECTIONS = [
-    "VISUAL CODES",
-    "CULTURAL MEANING",
-    "TABOO NAVIGATION",
-    "PLATFORM CONVENTIONS",
-    "CONSUMER PSYCHOLOGY",
-]
+# API configuration
+MODEL = config.get_api_config('openai_model', 'gpt-5-mini')
+MAX_OUTPUT_TOKENS = config.get_api_config('openai_max_output_tokens', 1200)
+RETRY_MAX_OUTPUT_TOKENS = config.get_api_config('openai_retry_max_tokens', 1800)
+REASONING_EFFORT = config.get_api_config('openai_reasoning_effort', 'medium')
+VERBOSITY = config.get_api_config('openai_verbosity', 'medium')
+
+# Pipeline settings
+RATE_LIMIT_DELAY = config.get_pipeline_setting('rate_limit_delay', 2)
+
+# Canonical sections
+CANON_SECTIONS = config.get_canonical_sections()
 
 SECTION_HEADER_RE = re.compile(r"^\s*(\d+)\)\s*([A-Za-z\u4e00-\u9fff\s/]+?):\s*(.*)$")
 
@@ -198,34 +200,14 @@ def extract_section_insights(client: OpenAI, section_name: str, section_texts: L
 
     combined_content = "\n\n".join(content_snippets)
 
-    prompt = f"""You are analyzing the "{section_name}" section from {len(section_texts)} Xiaohongshu product analyses about intimate wellness products.
-
-# SAMPLE CONTENT FROM THIS SECTION:
-
-{combined_content}
-
-# TASK: Extract key insights and patterns
-
-Analyze these {section_name} excerpts and provide:
-
-## 1. KEY PATTERNS (150 words)
-- What are the 3-4 most prominent patterns across documents?
-- What strategies/approaches appear repeatedly?
-- Include specific examples
-
-## 2. DISTINCTIVE ELEMENTS (100 words)
-- What unique or unexpected elements appear?
-- What differentiates successful approaches?
-
-## 3. CULTURAL INSIGHTS (100 words)
-- What does this reveal about Chinese consumer culture?
-- How does Xiaohongshu's platform shape these patterns?
-
-## 4. STRATEGIC CODEBOOK (150 words)
-- List 5-7 specific tactics/codes that brands should know
-- Format as actionable guidelines with examples
-
-Return only the analysis in markdown format."""
+    # Get prompt template from config and format it
+    prompt = config.get_prompt(
+        'step5_insight_extraction',
+        'section_insights_prompt_template',
+        section_name=section_name,
+        doc_count=len(section_texts),
+        combined_content=combined_content
+    )
 
     try:
         # First attempt
@@ -271,35 +253,12 @@ def generate_master_codebook(client: OpenAI, all_insights: List[Dict], out_dir: 
         for insight in all_insights if 'insights' in insight
     ])
 
-    synthesis_prompt = f"""You are creating a master codebook from insights about Xiaohongshu intimate wellness content.
-
-# SECTION INSIGHTS:
-
-{insights_text}
-
-# TASK: Create a comprehensive semiotic codebook (600-700 words)
-
-## 1. VISUAL LANGUAGE SYSTEM (150 words)
-- Core visual codes and their meanings
-- Color psychology and composition patterns
-- How visuals navigate cultural sensitivities
-
-## 2. CULTURAL NAVIGATION CODES (150 words)
-- Euphemism strategies and linguistic patterns
-- How taboos are transformed into acceptable content
-- Platform-specific communication norms
-
-## 3. CONSUMER PSYCHOLOGY FRAMEWORK (150 words)
-- Key psychological triggers and persuasion patterns
-- Identity signaling and social proof mechanisms
-- Purchase justification narratives
-
-## 4. STRATEGIC PLAYBOOK (150-200 words)
-- Top 10 actionable codes for brands
-- Format as: CODE NAME: Description (example)
-- Prioritize by impact and frequency
-
-Return the codebook in markdown format with clear sections and bullet points."""
+    # Get master codebook prompt from config and format it
+    synthesis_prompt = config.get_prompt(
+        'step5_insight_extraction',
+        'master_codebook_prompt_template',
+        insights_text=insights_text
+    )
 
     try:
         resp = call_responses(client, synthesis_prompt, 1800)

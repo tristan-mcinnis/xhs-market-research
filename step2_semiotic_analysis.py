@@ -12,31 +12,26 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
+from config_loader import get_config
 
 # -----------------------------
 # Config
 # -----------------------------
 IMAGE_DIR = "/Users/tristanmcinnis/Documents/L_Code/xhs-scrape-test/data/20250918/调味避孕套/images"
 OUTPUT_DIR = "./semiotic_analysis_results"
-RATE_LIMIT_DELAY = 2
-MODEL = "gpt-5-mini"
-MAX_OUTPUT_TOKENS = 700            # raised to reduce "incomplete (max_output_tokens)"
-RETRY_MAX_OUTPUT_TOKENS = 1100     # used on one retry if still incomplete
-REASONING_EFFORT = "low"           # minimize reasoning-token burn
-VERBOSITY = "low"
 
-SEMIOTIC_PROMPT = """You are a Chinese cultural analyst. You write your output primarily in English, making reference to important chinese concepts and languge when necessary. The images are from Xiaohongshu, and are mostly marketing or product/packaging or lifestyle photography; Focus on the semiotics.
+# Load configuration
+config = get_config()
 
-Analyze this Xiaohongshu image semiotically. Be CONCISE — max 300 words.
+# API configuration
+MODEL = config.get_api_config('openai_model', 'gpt-5-mini')
+MAX_OUTPUT_TOKENS = config.get_api_config('openai_max_output_tokens', 700)
+RETRY_MAX_OUTPUT_TOKENS = config.get_api_config('openai_retry_max_tokens', 1100)
+REASONING_EFFORT = config.get_api_config('openai_reasoning_effort', 'low')
+VERBOSITY = config.get_api_config('openai_verbosity', 'low')
 
-1) VISUAL CODES: Aesthetic strategy, colors, composition (1–2 sentences)
-2) CULTURAL MEANING: What values/lifestyle is being sold? Target audience? (2–3)
-3) TABOO NAVIGATION: How are sensitive topics made palatable? (1–2)
-4) PLATFORM CONVENTIONS: Xiaohongshu-specific elements (authenticity markers, influencer cues) (1–2)
-5) CONSUMER PSYCHOLOGY: Core persuasion mechanism (1–2)
-
-Return only the analysis text. Avoid internal reasoning, chain-of-thought, or step-by-step notes.
-"""
+# Pipeline settings
+RATE_LIMIT_DELAY = config.get_pipeline_setting('rate_limit_delay', 2)
 
 # -----------------------------
 # Helpers
@@ -137,7 +132,11 @@ def analyze_image(client: OpenAI, image_path: str, out_dir: Path) -> Dict[str, A
     filename = Path(image_path).name
     try:
         data_url = to_data_url(image_path)
-        input_blocks = make_multimodal_input(data_url, SEMIOTIC_PROMPT)
+        # Get prompt from config
+        system_prompt = config.get_prompt('step2_semiotic_analysis', 'system_prompt')
+        main_prompt = config.get_prompt('step2_semiotic_analysis', 'main_prompt')
+        full_prompt = system_prompt + "\n\n" + main_prompt
+        input_blocks = make_multimodal_input(data_url, full_prompt)
 
         # First attempt
         resp = call_responses(client, input_blocks, MAX_OUTPUT_TOKENS)
@@ -190,33 +189,13 @@ def perform_corpus_synthesis(client: OpenAI, analyses: List[Dict[str, Any]], out
 
     corpus_summary = "\n".join(f"- {s}" for s in snips)
 
-    synthesis_prompt = f"""You are analyzing {len(snips)} Xiaohongshu images about flavored intimate products.
-
-Below are compact excerpts from the per-image semiotic analyses:
-
-{corpus_summary}
-
-Task: Produce a ~500-word synthesis with this structure (concise, high-signal), and return only the final text:
-
-1. VISUAL STRATEGY PATTERNS (~100 words)
-- Dominant aesthetics and why they work
-- Color psychology in taboo product marketing
-
-2. CULTURAL NAVIGATION (~100 words)
-- How Chinese digital culture handles sexual wellness
-- Euphemism and metaphor strategies
-
-3. CONSUMER INSIGHTS (~100 words)
-- Target demographics and their values
-- Purchase drivers beyond function
-
-4. PLATFORM DYNAMICS (~100 words)
-- Xiaohongshu's role in normalizing taboo products
-- Content creator strategies
-
-5. KEY FINDING (~100 words)
-- Most significant insight about modern Chinese consumer culture
-"""
+    # Get synthesis prompt template from config and format it
+    synthesis_prompt = config.get_prompt(
+        'step2_semiotic_analysis',
+        'synthesis_prompt_template',
+        count=len(snips),
+        corpus_summary=corpus_summary
+    )
 
     def do_call(max_tokens: int):
         return client.responses.create(

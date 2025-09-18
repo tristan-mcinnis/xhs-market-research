@@ -1,0 +1,106 @@
+{
+  "api_config": {
+    "apify_api_token": "apify_api_Cladofg5w4Yw4GfTDmPt6LfFjGSrqQ2qKIB2",
+    "actor_id": "watk8sVZNzd40UtbQ",
+    "openai_model": "gpt-5-mini",
+    "openai_max_output_tokens": 1200,
+    "openai_retry_max_tokens": 1800,
+    "openai_reasoning_effort": "medium",
+    "openai_verbosity": "medium"
+  },
+
+  "pipeline_settings": {
+    "default_output_dir": "data",
+    "default_max_items": 30,
+    "default_max_downloads": 50,
+    "request_delay": 0.5,
+    "max_retries": 3,
+    "timeout": 10,
+    "rate_limit_delay": 2
+  },
+
+  "prompts": {
+    "step2_semiotic_analysis": {
+      "system_prompt": "You are a Chinese cultural analyst. You write your output primarily in English, making reference to important chinese concepts and languge when necessary. The images are from Xiaohongshu, and are mostly marketing or product/packaging or lifestyle photography; Focus on the semiotics.",
+
+      "main_prompt": "Analyze this Xiaohongshu image semiotically. Be CONCISE — max 300 words.\n\n1) VISUAL CODES: Aesthetic strategy, colors, composition (1–2 sentences)\n2) CULTURAL MEANING: What values/lifestyle is being sold? Target audience? (2–3)\n3) TABOO NAVIGATION: How are sensitive topics made palatable? (1–2)\n4) PLATFORM CONVENTIONS: Xiaohongshu-specific elements (authenticity markers, influencer cues) (1–2)\n5) CONSUMER PSYCHOLOGY: Core persuasion mechanism (1–2)\n\nReturn only the analysis text. Avoid internal reasoning, chain-of-thought, or step-by-step notes.",
+
+      "synthesis_prompt_template": "You are analyzing {count} Xiaohongshu images about flavored intimate products.\n\nBelow are compact excerpts from the per-image semiotic analyses:\n\n{corpus_summary}\n\nTask: Produce a ~500-word synthesis with this structure (concise, high-signal), and return only the final text:\n\n1. VISUAL STRATEGY PATTERNS (~100 words)\n- Dominant aesthetics and why they work\n- Color psychology in taboo product marketing\n\n2. CULTURAL NAVIGATION (~100 words)\n- How Chinese digital culture handles sexual wellness\n- Euphemism and metaphor strategies\n\n3. CONSUMER INSIGHTS (~100 words)\n- Target demographics and their values\n- Purchase drivers beyond function\n\n4. PLATFORM DYNAMICS (~100 words)\n- Xiaohongshu's role in normalizing taboo products\n- Content creator strategies\n\n5. KEY FINDING (~100 words)\n- Most significant insight about modern Chinese consumer culture"
+    },
+
+    "step5_insight_extraction": {
+      "section_insights_prompt_template": "You are analyzing the \"{section_name}\" section from {doc_count} Xiaohongshu product analyses about intimate wellness products.\n\n# SAMPLE CONTENT FROM THIS SECTION:\n\n{combined_content}\n\n# TASK: Extract key insights and patterns\n\nAnalyze these {section_name} excerpts and provide:\n\n## 1. KEY PATTERNS (150 words)\n- What are the 3-4 most prominent patterns across documents?\n- What strategies/approaches appear repeatedly?\n- Include specific examples\n\n## 2. DISTINCTIVE ELEMENTS (100 words)\n- What unique or unexpected elements appear?\n- What differentiates successful approaches?\n\n## 3. CULTURAL INSIGHTS (100 words)\n- What does this reveal about Chinese consumer culture?\n- How does Xiaohongshu's platform shape these patterns?\n\n## 4. STRATEGIC CODEBOOK (150 words)\n- List 5-7 specific tactics/codes that brands should know\n- Format as actionable guidelines with examples\n\nReturn only the analysis in markdown format.",
+
+      "master_codebook_prompt_template": "You are creating a master codebook from insights about Xiaohongshu intimate wellness content.\n\n# SECTION INSIGHTS:\n\n{insights_text}\n\n# TASK: Create a comprehensive semiotic codebook (600-700 words)\n\n## 1. VISUAL LANGUAGE SYSTEM (150 words)\n- Core visual codes and their meanings\n- Color psychology and composition patterns\n- How visuals navigate cultural sensitivities\n\n## 2. CULTURAL NAVIGATION CODES (150 words)\n- Euphemism strategies and linguistic patterns\n- How taboos are transformed into acceptable content\n- Platform-specific communication norms\n\n## 3. CONSUMER PSYCHOLOGY FRAMEWORK (150 words)\n- Key psychological triggers and persuasion patterns\n- Identity signaling and social proof mechanisms\n- Purchase justification narratives\n\n## 4. STRATEGIC PLAYBOOK (150-200 words)\n- Top 10 actionable codes for brands\n- Format as: CODE NAME: Description (example)\n- Prioritize by impact and frequency\n\nReturn the codebook in markdown format with clear sections and bullet points."
+    },
+
+    "step6_theme_enrichment": {
+      "theme_generation_system": "# IDENTITY and PURPOSE\nYou are an expert analyst with over 25 years working in thematizing clustered information from data sources. You excel at bringing to life detailed themes that are rich with details and powerfully written. Your goal is to carefully examine the clusters and properly thematize them.\n\nYou are analyzing clusters from Xiaohongshu (Little Red Book) content about intimate/sexual wellness products, particularly flavored condoms and related items.",
+
+      "theme_generation_prompt_template": "# STEPS\n- Thoroughly read and digest the cluster content provided\n- Extract the core theme that unites all items in this cluster\n- Provide a clear, descriptive title for the theme (5-7 words)\n- Offer a detailed explanation of the theme (300-350 words)\n- Include specific examples from the analyses\n- Provide actionable insights based on the theme\n\n# OUTPUT INSTRUCTIONS\n- Only output Markdown\n- Structure your response as follows:\n  1. **Theme Title** (5-7 words, compelling and descriptive)\n  2. **Core Insight** (one powerful sentence)\n  3. **Detailed Analysis** (300-350 words covering):\n     - What unites these items thematically\n     - Cultural/market significance\n     - Consumer psychology patterns\n     - Platform-specific dynamics\n     - Specific examples from the cluster\n  4. **Key Patterns** (3-4 bullet points)\n  5. **Strategic Implications** (2-3 actionable insights)\n\n# INPUT\n\nINPUT:\n{cluster_content}",
+
+      "synthesis_prompt_template": "You are synthesizing {theme_count} thematic clusters from Xiaohongshu content analysis about intimate wellness products.\n\n# THEMES IDENTIFIED:\n\n{themes_text}\n\n# TASK: Create a comprehensive synthesis (500-600 words) with this structure:\n\n## 1. MARKET EVOLUTION (100 words)\n- How these themes reveal the transformation of taboo product marketing in China\n\n## 2. CONSUMER SEGMENTATION (100 words)\n- Distinct consumer groups and their motivations revealed by the clustering\n\n## 3. CULTURAL NAVIGATION STRATEGIES (100 words)\n- Common patterns in how brands/creators handle sensitivity\n\n## 4. PLATFORM-SPECIFIC DYNAMICS (100 words)\n- What this reveals about Xiaohongshu's role in product discovery\n\n## 5. STRATEGIC RECOMMENDATIONS (100-200 words)\n- Actionable insights for brands entering this space\n\nReturn only the final synthesis text in markdown format."
+    },
+
+    "clustering_config": {
+      "model_name": "paraphrase-multilingual-MiniLM-L12-v2",
+      "k_min_default": 3,
+      "k_max_default": 10,
+      "top_n_per_section": 25
+    },
+
+    "comparative_analysis_config": {
+      "domain_stopwords": [
+        "image", "images", "visual", "codes", "cultural", "meaning", "platform",
+        "conventions", "consumer", "psychology", "products", "product",
+        "marketing", "brand", "brands", "china", "chinese", "modern", "young",
+        "lifestyle", "aesthetic", "style", "design", "packaging",
+        "taboo", "navigation", "influencer", "social", "media", "xhs",
+        "xiaohongshu", "user", "users", "content", "post", "posts",
+        "safe", "safety", "health", "wellness", "care", "via", "vs"
+      ],
+
+      "default_groups": {
+        "coffee_flavor": "(咖啡|coffee|咖啡味)",
+        "thai_product": "(泰国|Thailand|泰牌|thai)",
+        "mens_product": "(男生|男性|men|男士)",
+        "voc_flavor": "(voc|VOC)",
+        "product_reviews": "(避孕套|套|condom)",
+        "relationship": "(情侣|恋爱|couple|relationship)",
+        "other": ".*"
+      }
+    },
+
+    "visualization_config": {
+      "quadrant_thresholds": {
+        "safe_to_borrow": {
+          "adoption_min": 0.6,
+          "distinctive_max": 0.4
+        },
+        "momentum_bet": {
+          "adoption_min": 0.5,
+          "distinctive_min": 0.4
+        },
+        "edge_risky": {
+          "adoption_max": 0.5,
+          "distinctive_min": 0.6
+        }
+      },
+
+      "visualization_settings": {
+        "atlas_figure_size": [10, 8],
+        "radar_figure_size": [9, 7],
+        "dpi": 200,
+        "top_annotations": 20
+      }
+    }
+  },
+
+  "canonical_sections": [
+    "VISUAL CODES",
+    "CULTURAL MEANING",
+    "TABOO NAVIGATION",
+    "PLATFORM CONVENTIONS",
+    "CONSUMER PSYCHOLOGY"
+  ]
+}

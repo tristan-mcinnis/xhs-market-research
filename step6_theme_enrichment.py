@@ -16,15 +16,20 @@ from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
 import pandas as pd
+from config_loader import get_config
 
 # -----------------------------
 # Config
 # -----------------------------
-MODEL = "gpt-5-mini"
+# Load configuration
+config = get_config()
+
+# API configuration
+MODEL = config.get_api_config('openai_model', 'gpt-5-mini')
 MAX_OUTPUT_TOKENS = 1500
 RETRY_MAX_OUTPUT_TOKENS = 2000
-REASONING_EFFORT = "medium"  # Higher for theme analysis
-VERBOSITY = "medium"
+REASONING_EFFORT = config.get_api_config('openai_reasoning_effort', 'medium')
+VERBOSITY = config.get_api_config('openai_verbosity', 'medium')
 
 # -----------------------------
 # Helpers (from semiotic_analysis.py)
@@ -154,36 +159,15 @@ SAMPLE ANALYSES FROM THIS CLUSTER:
 {chr(10).join(snippets[:7])}
 """
 
-    system_prompt = """# IDENTITY and PURPOSE
-You are an expert analyst with over 25 years working in thematizing clustered information from data sources. You excel at bringing to life detailed themes that are rich with details and powerfully written. Your goal is to carefully examine the clusters and properly thematize them.
+    # Get prompts from config
+    system_prompt = config.get_prompt('step6_theme_enrichment', 'theme_generation_system')
+    prompt_template = config.get_prompt(
+        'step6_theme_enrichment',
+        'theme_generation_prompt_template',
+        cluster_content=cluster_content
+    )
 
-You are analyzing clusters from Xiaohongshu (Little Red Book) content about intimate/sexual wellness products, particularly flavored condoms and related items.
-
-# STEPS
-- Thoroughly read and digest the cluster content provided
-- Extract the core theme that unites all items in this cluster
-- Provide a clear, descriptive title for the theme (5-7 words)
-- Offer a detailed explanation of the theme (300-350 words)
-- Include specific examples from the analyses
-- Provide actionable insights based on the theme
-
-# OUTPUT INSTRUCTIONS
-- Only output Markdown
-- Structure your response as follows:
-  1. **Theme Title** (5-7 words, compelling and descriptive)
-  2. **Core Insight** (one powerful sentence)
-  3. **Detailed Analysis** (300-350 words covering):
-     - What unites these items thematically
-     - Cultural/market significance
-     - Consumer psychology patterns
-     - Platform-specific dynamics
-     - Specific examples from the cluster
-  4. **Key Patterns** (3-4 bullet points)
-  5. **Strategic Implications** (2-3 actionable insights)
-
-# INPUT"""
-
-    full_prompt = f"{system_prompt}\n\nINPUT:\n{cluster_content}"
+    full_prompt = f"{system_prompt}\n\n{prompt_template}"
 
     try:
         # First attempt
@@ -229,30 +213,13 @@ def generate_synthesis(client: OpenAI, themes: List[Dict], out_dir: Path) -> str
         for t in themes if 'theme' in t
     ])
 
-    synthesis_prompt = f"""You are synthesizing {len(themes)} thematic clusters from Xiaohongshu content analysis about intimate wellness products.
-
-# THEMES IDENTIFIED:
-
-{themes_text}
-
-# TASK: Create a comprehensive synthesis (500-600 words) with this structure:
-
-## 1. MARKET EVOLUTION (100 words)
-- How these themes reveal the transformation of taboo product marketing in China
-
-## 2. CONSUMER SEGMENTATION (100 words)
-- Distinct consumer groups and their motivations revealed by the clustering
-
-## 3. CULTURAL NAVIGATION STRATEGIES (100 words)
-- Common patterns in how brands/creators handle sensitivity
-
-## 4. PLATFORM-SPECIFIC DYNAMICS (100 words)
-- What this reveals about Xiaohongshu's role in product discovery
-
-## 5. STRATEGIC RECOMMENDATIONS (100-200 words)
-- Actionable insights for brands entering this space
-
-Return only the final synthesis text in markdown format."""
+    # Get synthesis prompt from config
+    synthesis_prompt = config.get_prompt(
+        'step6_theme_enrichment',
+        'synthesis_prompt_template',
+        theme_count=len(themes),
+        themes_text=themes_text
+    )
 
     try:
         resp = call_responses(client, synthesis_prompt, 1500)
