@@ -1,95 +1,91 @@
 @echo off
-REM Xiaohongshu Scraper Setup Script for Windows with UV
+REM XHS Scraper Setup Script for Windows using UV
 
-echo ==========================================
-echo Xiaohongshu Scraper ^& Analyzer Setup (UV)
-echo ==========================================
+echo ================================
+echo   XHS Scraper Setup with UV
+echo ================================
 echo.
 
-REM Check if UV is installed
+REM Check for Python
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Python 3 is not installed
+    echo Please install Python 3.8 or higher from https://python.org
+    pause
+    exit /b 1
+)
+
+for /f "tokens=2" %%i in ('python --version 2^>^&1') do set PYTHON_VERSION=%%i
+echo [OK] Found Python %PYTHON_VERSION%
+
+REM Check/Install UV
 where uv >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Installing UV...
+    echo Installing UV package manager...
     powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-    REM Check again after installation
-    where uv >nul 2>&1
-    if %errorlevel% neq 0 (
-        echo X Failed to install UV. Please install it manually:
-        echo   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-        pause
-        exit /b 1
-    )
-    echo OK UV installed successfully
+    REM Add to PATH
+    set "PATH=%USERPROFILE%\.cargo\bin;%PATH%"
+
+    echo [OK] UV installed successfully
 ) else (
-    echo OK UV found
+    echo [OK] UV is already installed
 )
 
-echo.
+REM Create virtual environment
+echo Creating virtual environment...
+uv venv --python 3.8
 
-REM Create virtual environment using UV if it doesn't exist
-if not exist ".venv" (
-    echo Creating virtual environment with UV...
-    uv venv
-    echo OK Virtual environment created
-) else (
-    echo OK Virtual environment already exists
-)
+REM Install dependencies in virtual environment
+echo Installing dependencies...
+uv pip install --python .venv\Scripts\python.exe -r requirements.txt
 
-REM Activate virtual environment
-echo Activating virtual environment...
-call .venv\Scripts\activate
-
-REM Install requirements using UV
-echo Installing requirements with UV...
-uv pip install -r requirements.txt
-
-REM Install additional dependencies
-echo Installing additional dependencies...
-uv pip install scikit-learn google-generativeai
-
-REM Check if .env file exists
+REM Check for .env file
 if not exist ".env" (
     echo.
-    echo WARNING: No .env file found. Creating template...
-    (
-        echo # API Keys and Credentials
-        echo APIFY_API_TOKEN="your_apify_token_here"
-        echo.
-        echo # LLM Providers
-        echo OPENAI_API_KEY="your_openai_key_here"
-        echo DEEPSEEK_API_KEY="your_deepseek_key_here"
-        echo GEMINI_API_KEY="your_gemini_key_here"
-        echo MOONSHOT_API_KEY="your_moonshot_key_here"
-    ) > .env
-    echo OK .env template created. Please add your API keys.
-) else (
-    echo OK .env file exists
+    echo Creating .env file...
+    if exist ".env.example" (
+        copy .env.example .env
+    ) else (
+        (
+            echo # Xiaohongshu Scraper Configuration
+            echo # Get your token from: https://console.apify.com/account/integrations
+            echo.
+            echo APIFY_API_TOKEN=your_apify_token_here
+        ) > .env
+    )
+    echo [OK] Created .env file
+    echo [WARNING] Please edit .env and add your Apify API token
 )
 
-REM Create data directories if they don't exist
-echo.
-echo Creating data directories...
-if not exist "data\downloaded_content" mkdir data\downloaded_content
-if not exist "data\reports" mkdir data\reports
+REM Create default config
+if not exist "config.json" (
+    echo Creating default configuration...
+    python -c "from src.scrapers.config import Config; Config.create_default_config()" 2>nul || (
+        uv run python -c "from src.scrapers.config import Config; Config.create_default_config()"
+    )
+    echo [OK] Created config.json
+)
+
+REM Create directories
+echo Creating project directories...
+if not exist "data\scraped" mkdir data\scraped
+if not exist "data\images" mkdir data\images
 if not exist "logs" mkdir logs
-
-echo OK Directories created
+echo [OK] Directories created
 
 echo.
-echo ==========================================
-echo OK Setup Complete!
-echo ==========================================
+echo ================================
+echo   Setup Complete!
+echo ================================
 echo.
 echo Next steps:
-echo 1. Add your API keys to .env file
-echo 2. Activate the virtual environment: .venv\Scripts\activate
-echo 3. Test scraping: python main.py --keyword "test" --posts 5
-echo 4. Test analysis: python analyze.py --latest --openai
+echo 1. Edit .env and add your Apify API token
+echo 2. Activate the environment:
+echo    .venv\Scripts\activate
+echo 3. Run the scraper:
+echo    python xhs_actor.py search "keyword" --download
 echo.
-echo UV tips:
-echo - Use 'uv pip list' to see installed packages
-echo - Use 'uv pip install ^<package^>' for faster installs
-echo - UV is 10-100x faster than pip!
+echo For more options: python xhs_actor.py --help
 echo.
 pause

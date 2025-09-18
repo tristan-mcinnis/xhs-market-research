@@ -1,94 +1,107 @@
 #!/bin/bash
 
-# Xiaohongshu Scraper Setup Script with UV
-echo "=========================================="
-echo "Xiaohongshu Scraper & Analyzer Setup (UV)"
-echo "=========================================="
-echo ""
+# XHS Scraper Setup Script using UV
+# Fast, modern Python package management
 
-# Check if UV is installed
-if ! command -v uv &> /dev/null; then
-    echo "📦 UV not found. Installing UV..."
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}================================${NC}"
+echo -e "${BLUE}  XHS Scraper Setup with UV${NC}"
+echo -e "${BLUE}================================${NC}"
+echo
+
+# Function to check if command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check for Python
+if ! command_exists python3; then
+    echo -e "${RED}❌ Python 3 is not installed${NC}"
+    echo "Please install Python 3.8 or higher from https://python.org"
+    exit 1
+fi
+
+PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
+echo -e "${GREEN}✓${NC} Found Python ${PYTHON_VERSION}"
+
+# Install UV if not present
+if ! command_exists uv; then
+    echo -e "${YELLOW}Installing UV package manager...${NC}"
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
     # Add UV to PATH for current session
     export PATH="$HOME/.cargo/bin:$PATH"
 
-    # Check again
-    if ! command -v uv &> /dev/null; then
-        echo "❌ Failed to install UV. Please install it manually:"
-        echo "   curl -LsSf https://astral.sh/uv/install.sh | sh"
-        exit 1
+    # Add to shell profile if not already there
+    if [[ "$SHELL" == *"zsh"* ]]; then
+        PROFILE="$HOME/.zshrc"
+    else
+        PROFILE="$HOME/.bashrc"
     fi
-    echo "✅ UV installed successfully"
+
+    if ! grep -q ".cargo/bin" "$PROFILE" 2>/dev/null; then
+        echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> "$PROFILE"
+        echo -e "${GREEN}✓${NC} Added UV to $PROFILE"
+    fi
+
+    echo -e "${GREEN}✓${NC} UV installed successfully"
 else
-    echo "✅ UV found: $(uv --version)"
+    echo -e "${GREEN}✓${NC} UV is already installed"
 fi
 
-echo ""
+# Create virtual environment with UV
+echo -e "${YELLOW}Creating virtual environment...${NC}"
+uv venv --python 3.8
 
-# Create virtual environment using UV if it doesn't exist
-if [ ! -d ".venv" ]; then
-    echo "📦 Creating virtual environment with UV..."
-    uv venv
-    echo "✅ Virtual environment created"
-else
-    echo "✅ Virtual environment already exists"
-fi
+# Install dependencies in virtual environment
+echo -e "${YELLOW}Installing dependencies...${NC}"
+uv pip install --python .venv/bin/python -r requirements.txt
 
-# Activate virtual environment
-echo "🔄 Activating virtual environment..."
-source .venv/bin/activate
-
-# Install requirements using UV
-echo "📦 Installing requirements with UV..."
-uv pip install -r requirements.txt
-
-# Install additional dependencies that might be missing
-echo "📦 Installing additional dependencies..."
-uv pip install scikit-learn google-generativeai
-
-# Check if .env file exists
+# Check for API token
 if [ ! -f ".env" ]; then
-    echo ""
-    echo "⚠️  No .env file found. Creating template..."
-    cat > .env << EOL
-# API Keys and Credentials
-APIFY_API_TOKEN="your_apify_token_here"
+    echo
+    echo -e "${YELLOW}Creating .env file...${NC}"
+    cp .env.example .env 2>/dev/null || cat > .env << 'EOF'
+# Xiaohongshu Scraper Configuration
+# Get your token from: https://console.apify.com/account/integrations
 
-# LLM Providers
-OPENAI_API_KEY="your_openai_key_here"
-DEEPSEEK_API_KEY="your_deepseek_key_here"
-GEMINI_API_KEY="your_gemini_key_here"
-MOONSHOT_API_KEY="your_moonshot_key_here"
-EOL
-    echo "✅ .env template created. Please add your API keys."
-else
-    echo "✅ .env file exists"
+APIFY_API_TOKEN=your_apify_token_here
+EOF
+    echo -e "${GREEN}✓${NC} Created .env file"
+    echo -e "${YELLOW}⚠️  Please edit .env and add your Apify API token${NC}"
 fi
 
-# Create data directories if they don't exist
-echo ""
-echo "📁 Creating data directories..."
-mkdir -p data/downloaded_content
-mkdir -p data/reports
-mkdir -p logs
+# Create default config if not exists
+if [ ! -f "config.json" ]; then
+    echo -e "${YELLOW}Creating default configuration...${NC}"
+    python3 -c "from src.scrapers.config import Config; Config.create_default_config()" 2>/dev/null || \
+    uv run python -c "from src.scrapers.config import Config; Config.create_default_config()"
+    echo -e "${GREEN}✓${NC} Created config.json"
+fi
 
-echo "✅ Directories created"
+# Create necessary directories
+echo -e "${YELLOW}Creating project directories...${NC}"
+mkdir -p data/scraped data/images logs
+echo -e "${GREEN}✓${NC} Directories created"
 
-echo ""
-echo "=========================================="
-echo "✅ Setup Complete!"
-echo "=========================================="
-echo ""
-echo "Next steps:"
-echo "1. Add your API keys to .env file"
-echo "2. Activate the virtual environment: source .venv/bin/activate"
-echo "3. Test scraping: python main.py --keyword 'test' --posts 5"
-echo "4. Test analysis: python analyze.py --latest --openai"
-echo ""
-echo "UV tips:"
-echo "• Use 'uv pip list' to see installed packages"
-echo "• Use 'uv pip install <package>' for faster installs"
-echo "• UV is 10-100x faster than pip!"
-echo ""
+echo
+echo -e "${GREEN}================================${NC}"
+echo -e "${GREEN}  Setup Complete! 🎉${NC}"
+echo -e "${GREEN}================================${NC}"
+echo
+echo -e "Next steps:"
+echo -e "1. ${YELLOW}Edit .env${NC} and add your Apify API token"
+echo -e "2. ${YELLOW}Activate the environment:${NC}"
+echo -e "   ${BLUE}source .venv/bin/activate${NC}"
+echo -e "3. ${YELLOW}Run the scraper:${NC}"
+echo -e "   ${BLUE}python xhs_actor.py search 'keyword' --download${NC}"
+echo
+echo -e "For more options: ${BLUE}python xhs_actor.py --help${NC}"

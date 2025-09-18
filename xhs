@@ -1,0 +1,11 @@
+#!/bin/bash
+# Quick wrapper to run XHS scraper with virtual environment
+
+# Check if venv exists
+if [ ! -d ".venv" ]; then
+    echo "Virtual environment not found. Running setup..."
+    ./setup.sh
+fi
+
+# Run with venv Python
+.venv/bin/python xhs_actor.py "$@"
