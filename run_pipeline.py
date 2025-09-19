@@ -8,6 +8,7 @@ import os
 import sys
 import argparse
 import json
+import shlex
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, List, Dict, Any
@@ -137,10 +138,31 @@ class PipelineRunner:
             query = kwargs.get('query', self.config.query)
             max_items = kwargs.get('max_items', 30)
             download = kwargs.get('download', True)
+            scraped_dir = self.config.get_dir('step1_scraped')
+            images_dir = self.config.get_dir('step1_images')
+            query_dir = self.config.query_dir
 
-            cmd = f"python {script} search '{query}' --max-items {max_items}"
+            cmd_parts = [
+                "python",
+                script,
+                "search",
+                shlex.quote(query),
+                "--max-items",
+                str(max_items),
+                "--scraped-dir",
+                shlex.quote(str(scraped_dir)),
+                "--images-dir",
+                shlex.quote(str(images_dir)),
+                "--query-dir",
+                shlex.quote(str(query_dir)),
+                "--date",
+                shlex.quote(self.config.date),
+            ]
+
             if download:
-                cmd += " --download"
+                cmd_parts.append("--download")
+
+            cmd = " ".join(cmd_parts)
 
         elif step_num == 2:  # Semiotic Analysis
             images_dir = self.config.get_dir('step1_images')

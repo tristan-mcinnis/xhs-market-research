@@ -295,6 +295,57 @@ def create_codebook_dataframe(insights: List[Dict]) -> pd.DataFrame:
 
     return pd.DataFrame(rows)
 
+
+def prepare_visualization_codebook(codebook_df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize the pattern dataframe so visualization step can consume it."""
+
+    if codebook_df.empty:
+        return pd.DataFrame(
+            columns=[
+                'section', 'phrase', 'doc_freq', 'total_score',
+                'pattern_rank', 'example_sentence', 'example_files'
+            ]
+        )
+
+    viz_df = codebook_df.copy()
+
+    if 'phrase' not in viz_df.columns and 'pattern' in viz_df.columns:
+        viz_df.rename(columns={'pattern': 'phrase'}, inplace=True)
+
+    if 'doc_freq' not in viz_df.columns:
+        if 'doc_count' in viz_df.columns:
+            viz_df.rename(columns={'doc_count': 'doc_freq'}, inplace=True)
+        else:
+            viz_df['doc_freq'] = 0
+
+    # Ensure essential columns exist
+    for col in ['section', 'phrase']:
+        if col not in viz_df.columns:
+            viz_df[col] = ''
+
+    viz_df['section'] = viz_df['section'].astype(str).str.strip()
+    viz_df['phrase'] = viz_df['phrase'].astype(str).str.strip()
+    viz_df['doc_freq'] = pd.to_numeric(viz_df['doc_freq'], errors='coerce').fillna(0).astype(int)
+    viz_df['pattern_rank'] = pd.to_numeric(
+        viz_df.get('pattern_rank', 0), errors='coerce'
+    ).fillna(0).astype(int)
+
+    max_rank = viz_df['pattern_rank'].max() if not viz_df['pattern_rank'].empty else 0
+    offset = (max_rank - viz_df['pattern_rank']).clip(lower=0)
+    viz_df['total_score'] = (viz_df['doc_freq'] + offset).astype(float)
+
+    if 'example_sentence' not in viz_df.columns:
+        viz_df['example_sentence'] = ''
+    if 'example_files' not in viz_df.columns:
+        viz_df['example_files'] = ''
+
+    ordered_cols = [
+        'section', 'phrase', 'doc_freq', 'total_score',
+        'pattern_rank', 'example_sentence', 'example_files'
+    ]
+
+    return viz_df[ordered_cols]
+
 # -----------------------------
 # Main
 # -----------------------------
@@ -370,9 +421,11 @@ def main():
     # Create structured codebook
     print("\nCreating structured codebook...")
     codebook_df = create_codebook_dataframe(all_insights)
+    viz_codebook_df = prepare_visualization_codebook(codebook_df)
 
     # Save outputs
     codebook_df.to_csv(out_dir / "codebook_patterns.csv", index=False)
+    viz_codebook_df.to_csv(out_dir / "codebook.csv", index=False)
 
     # Save all insights as JSON
     insights_path = out_dir / f"all_insights_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
@@ -418,6 +471,7 @@ def main():
     print(f"📁 Results saved to: {out_dir}")
     print(f"   - Section insights: insights_*.md")
     print(f"   - Pattern codebook: codebook_patterns.csv")
+    print(f"   - Visualization codebook: codebook.csv")
     print(f"   - Full report: insight_extraction_report.md")
     if args.synthesize:
         print(f"   - Master codebook: master_codebook_*.md")

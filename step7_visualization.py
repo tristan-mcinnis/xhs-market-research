@@ -50,11 +50,15 @@ except Exception:
 
 from sentence_transformers import SentenceTransformer
 
+from config_loader import get_config
+
 # -----------------------------
 # Canon + default group map
 # -----------------------------
 
-CANON_SECTIONS = [
+config = get_config()
+
+CANON_SECTIONS_FALLBACK = [
     "VISUAL CODES",
     "CULTURAL MEANING",
     "TABOO NAVIGATION",
@@ -62,7 +66,9 @@ CANON_SECTIONS = [
     "CONSUMER PSYCHOLOGY",
 ]
 
-DEFAULT_GROUPS = {
+CANON_SECTIONS = config.get_canonical_sections() or CANON_SECTIONS_FALLBACK
+
+DEFAULT_GROUPS_FALLBACK = {
     "coffee_flavor": r"(咖啡|coffee|咖啡味)",
     "thai_product": r"(泰国|Thailand|泰牌|thai)",
     "mens_product": r"(男生|男性|men|男士)",
@@ -71,6 +77,17 @@ DEFAULT_GROUPS = {
     "relationship": r"(情侣|恋爱|couple|relationship)",
     "other": r".*",
 }
+
+DEFAULT_GROUPS = config.get_comparative_config().get('default_groups', DEFAULT_GROUPS_FALLBACK)
+
+VIS_CONFIG = config.get_visualization_config() or {}
+QUADRANT_THRESHOLDS = VIS_CONFIG.get('quadrant_thresholds', {})
+VISUAL_SETTINGS = VIS_CONFIG.get('visualization_settings', {})
+
+ATLAS_FIGSIZE = tuple(VISUAL_SETTINGS.get('atlas_figure_size', [10, 8]))
+RADAR_FIGSIZE = tuple(VISUAL_SETTINGS.get('radar_figure_size', [9, 7]))
+OUTPUT_DPI = VISUAL_SETTINGS.get('dpi', 200)
+TOP_ANNOTATIONS = VISUAL_SETTINGS.get('top_annotations', 20)
 
 SECTION_HEADER_RE = re.compile(r"^\s*(\d+)\)\s*([A-Za-z\u4e00-\u9fff\s/]+?):\s*(.*)$")
 
@@ -97,6 +114,65 @@ def split_sections(text: str) -> Dict[str, str]:
             if current is not None:
                 parts[current].append(line.strip())
     return {k: " ".join(v).strip() for k, v in parts.items() if " ".join(v).strip()}
+
+
+def normalize_codebook_schema(df: pd.DataFrame) -> pd.DataFrame:
+    """Ensure the codebook has the columns needed for visualization."""
+
+    if df.empty:
+        return pd.DataFrame(
+            columns=[
+                'section', 'phrase', 'doc_freq', 'total_score',
+                'pattern_rank', 'example_sentence', 'example_files'
+            ]
+        )
+
+    normalized = df.copy()
+
+    if 'phrase' not in normalized.columns and 'pattern' in normalized.columns:
+        normalized.rename(columns={'pattern': 'phrase'}, inplace=True)
+
+    if 'doc_freq' not in normalized.columns:
+        if 'doc_count' in normalized.columns:
+            normalized.rename(columns={'doc_count': 'doc_freq'}, inplace=True)
+        else:
+            normalized['doc_freq'] = 0
+
+    if 'pattern_rank' in normalized.columns:
+        normalized['pattern_rank'] = pd.to_numeric(
+            normalized['pattern_rank'], errors='coerce'
+        ).fillna(0).astype(int)
+    else:
+        normalized['pattern_rank'] = 0
+
+    normalized['doc_freq'] = pd.to_numeric(
+        normalized['doc_freq'], errors='coerce'
+    ).fillna(0).astype(int)
+
+    if 'total_score' in normalized.columns:
+        normalized['total_score'] = pd.to_numeric(
+            normalized['total_score'], errors='coerce'
+        ).fillna(0.0)
+    else:
+        max_rank = normalized['pattern_rank'].max() if not normalized['pattern_rank'].empty else 0
+        offset = (max_rank - normalized['pattern_rank']).clip(lower=0)
+        normalized['total_score'] = normalized['doc_freq'] + offset
+
+    for col in ['section', 'phrase']:
+        if col not in normalized.columns:
+            normalized[col] = ''
+
+    if 'example_sentence' not in normalized.columns:
+        normalized['example_sentence'] = ''
+    if 'example_files' not in normalized.columns:
+        normalized['example_files'] = ''
+
+    normalized['section'] = normalized['section'].astype(str).str.strip()
+    normalized['phrase'] = normalized['phrase'].astype(str).str.strip()
+    normalized['example_sentence'] = normalized['example_sentence'].fillna('').astype(str)
+    normalized['example_files'] = normalized['example_files'].fillna('').astype(str)
+
+    return normalized
 
 def load_json_rows(json_dir: Path) -> pd.DataFrame:
     rows = []
@@ -156,11 +232,27 @@ def normalized_entropy(counts: Dict[str, int]) -> float:
 
 def classify_quadrant(adoption: float, distinctive: float) -> str:
     """Rules of thumb; tweak thresholds via CLI if needed."""
-    if adoption >= 0.6 and distinctive <= 0.4:
+    safe_cfg = {
+        'adoption_min': 0.6,
+        'distinctive_max': 0.4,
+        **QUADRANT_THRESHOLDS.get('safe_to_borrow', {})
+    }
+    momentum_cfg = {
+        'adoption_min': 0.5,
+        'distinctive_min': 0.4,
+        **QUADRANT_THRESHOLDS.get('momentum_bet', {})
+    }
+    edge_cfg = {
+        'adoption_max': 0.5,
+        'distinctive_min': 0.6,
+        **QUADRANT_THRESHOLDS.get('edge_risky', {})
+    }
+
+    if adoption >= safe_cfg.get('adoption_min', 0.6) and distinctive <= safe_cfg.get('distinctive_max', 0.4):
         return "Safe to Borrow"
-    if adoption >= 0.5 and distinctive > 0.4:
+    if adoption >= momentum_cfg.get('adoption_min', 0.5) and distinctive >= momentum_cfg.get('distinctive_min', 0.4):
         return "Momentum Bet"
-    if adoption < 0.5 and distinctive >= 0.6:
+    if adoption <= edge_cfg.get('adoption_max', 0.5) and distinctive >= edge_cfg.get('distinctive_min', 0.6):
         return "Edge / Risky"
     return "Watchlist"
 
@@ -192,7 +284,15 @@ def build_playbook(df_codebook: pd.DataFrame,
         sub = df_codebook[df_codebook["section"] == sec] \
                 .sort_values(["doc_freq", "total_score"], ascending=False) \
                 .head(top_per_section)
-        chosen.append(sub)
+        if not sub.empty:
+            chosen.append(sub)
+
+    if not chosen:
+        return pd.DataFrame(columns=[
+            "section", "phrase", "doc_freq", "adoption", "distinctiveness",
+            "quadrant", "example_sentence", "example_files"
+        ])
+
     phrases_df = pd.concat(chosen, ignore_index=True)
     # Attach group membership per document
     df_docs["group"] = [assign_group(x, group_map) for x in df_docs["filename_field"].astype(str)]
@@ -223,13 +323,16 @@ def build_playbook(df_codebook: pd.DataFrame,
     return pd.DataFrame(rows)
 
 def plot_semiotic_atlas(phrases_df: pd.DataFrame, model_name: str, out_path: Path):
+    if phrases_df.empty:
+        return
+
     labels = phrases_df["phrase"].tolist()
     sections = phrases_df["section"].tolist()
     model = SentenceTransformer(model_name)
     vecs = embed_texts(model, labels)
     xy = reduce_2d(vecs, method="umap")
     # Plot
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=ATLAS_FIGSIZE)
     # color by section (simple mapping)
     sec_list = list(dict.fromkeys(sections))
     colors = {s: i for i, s in enumerate(sec_list)}
@@ -238,17 +341,20 @@ def plot_semiotic_atlas(phrases_df: pd.DataFrame, model_name: str, out_path: Pat
         plt.scatter(xy[mask, 0], xy[mask, 1], s=30, label=s, alpha=0.75)
     # annotate a few most adopted & distinctive (top 20 by sum)
     scores = phrases_df["adoption"].values + phrases_df["distinctiveness"].values
-    top_idx = np.argsort(scores)[::-1][:20]
+    top_idx = np.argsort(scores)[::-1][:TOP_ANNOTATIONS]
     for i in top_idx:
         plt.text(xy[i, 0], xy[i, 1], labels[i][:28], fontsize=8)
     plt.title("Semiotic Atlas (phrase map)")
     plt.legend(loc="best", fontsize=8)
     plt.tight_layout()
-    plt.savefig(out_path, dpi=200)
+    plt.savefig(out_path, dpi=OUTPUT_DPI)
     plt.close()
 
 def plot_trend_radar(playbook_df: pd.DataFrame, out_path: Path):
-    plt.figure(figsize=(9, 7))
+    if playbook_df.empty:
+        return
+
+    plt.figure(figsize=RADAR_FIGSIZE)
     # scatter by quadrant
     quads = playbook_df["quadrant"].unique().tolist()
     for q in quads:
@@ -268,7 +374,7 @@ def plot_trend_radar(playbook_df: pd.DataFrame, out_path: Path):
     plt.grid(True, alpha=0.25)
     plt.legend(loc="best", fontsize=8)
     plt.tight_layout()
-    plt.savefig(out_path, dpi=200)
+    plt.savefig(out_path, dpi=OUTPUT_DPI)
     plt.close()
 
 def write_report_md(playbook_df: pd.DataFrame, atlas_path: Path, radar_path: Path, out_path: Path):
@@ -312,8 +418,10 @@ def main():
 
     # Load inputs
     df_codebook = pd.read_csv(args.codebook)
+    df_codebook = normalize_codebook_schema(df_codebook)
+    df_codebook = df_codebook[df_codebook['phrase'].astype(str).str.strip() != '']
     if df_codebook.empty:
-        print("codebook.csv is empty.")
+        print("codebook.csv contains no usable phrases.")
         return
     df_docs = load_json_rows(Path(args.json_dir))
     if df_docs.empty:
@@ -329,6 +437,8 @@ def main():
 
     # Build playbook table
     playbook_df = build_playbook(df_codebook, df_docs, group_map, top_per_section=args.top_per_section)
+    if playbook_df.empty:
+        print("Warning: No qualifying phrases found for visualization.")
     playbook_df.sort_values(["quadrant", "adoption", "distinctiveness"], ascending=[True, False, False], inplace=True)
     playbook_df.to_csv(playbook_csv, index=False)
 

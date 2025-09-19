@@ -26,18 +26,27 @@ except ImportError:
     print("Or manually: pip install apify-client requests python-dotenv")
     sys.exit(1)
 
+try:
+    from config_loader import get_config
+except ImportError:
+    print("Error: Unable to import configuration loader (config_loader.py).")
+    sys.exit(1)
+
 # Load environment variables
 load_dotenv()
 
-# Configuration
-APIFY_API_TOKEN = os.getenv("APIFY_API_TOKEN", "")
-ACTOR_ID = "watk8sVZNzd40UtbQ"  # XHS Scraper Actor ID
+# Load configuration
+config = get_config()
 
-# Default settings
-DEFAULT_MAX_ITEMS = 30
-DEFAULT_BASE_DIR = Path("data")
-REQUEST_DELAY = 0.5
-TIMEOUT = 10
+# Configuration
+APIFY_API_TOKEN = os.getenv("APIFY_API_TOKEN") or config.get_api_config("apify_api_token", "")
+ACTOR_ID = config.get_api_config("actor_id", "watk8sVZNzd40UtbQ")
+
+# Default settings (centralized via pipeline_config.json)
+DEFAULT_MAX_ITEMS = config.get_pipeline_setting("default_max_items", 30)
+DEFAULT_BASE_DIR = Path(config.get_pipeline_setting("default_output_dir", "data"))
+REQUEST_DELAY = config.get_pipeline_setting("request_delay", 0.5)
+TIMEOUT = config.get_pipeline_setting("timeout", 10)
 
 # Image download headers
 HEADERS = {
@@ -76,33 +85,76 @@ class XHSActor:
         )
         self.logger = logging.getLogger(__name__)
 
-    def setup_query_directory(self, query_name: str):
-        """Setup directory structure for a specific query"""
-        date_dir = datetime.now().strftime('%Y%m%d')
-        # Clean query name for directory
-        clean_query = "".join(c for c in query_name if c.isalnum() or c in (' ', '-', '_')).strip()
+    def setup_query_directory(
+        self,
+        query_name: str,
+        scraped_dir: Optional[Path] = None,
+        images_dir: Optional[Path] = None,
+        query_dir: Optional[Path] = None,
+        date_override: Optional[str] = None,
+    ):
+        """Setup directory structure for a specific query.
+
+        When used inside the orchestration pipeline, directories are pre-created
+        by :class:`WorkflowConfig`. In that case we simply reuse the provided
+        paths rather than generating a new date-based folder.
+        """
+
+        # Allow orchestrator to pass explicit directories
+        if scraped_dir and images_dir:
+            self.scraped_dir = Path(scraped_dir)
+            self.images_dir = Path(images_dir)
+            self.scraped_dir.mkdir(parents=True, exist_ok=True)
+            self.images_dir.mkdir(parents=True, exist_ok=True)
+            parent = Path(query_dir) if query_dir else self.scraped_dir.parent
+            parent.mkdir(parents=True, exist_ok=True)
+            self.current_query_dir = parent
+            self.logger.info(
+                "Using provided workflow directories: scraped=%s, images=%s",
+                self.scraped_dir,
+                self.images_dir,
+            )
+            return self.current_query_dir
+
+        # Fall back to legacy date-based structure for standalone runs
+        date_dir = (date_override or datetime.now().strftime('%Y%m%d'))
+        clean_query = "".join(
+            c for c in query_name if c.isalnum() or c in (' ', '-', '_')
+        ).strip()
         clean_query = clean_query.replace(' ', '_')[:50]
 
-        # Create directory structure: data/YYYYMMDD/query_name/
         self.current_query_dir = DEFAULT_BASE_DIR / date_dir / clean_query
         self.scraped_dir = self.current_query_dir / "scraped"
         self.images_dir = self.current_query_dir / "images"
 
-        # Create directories
         self.scraped_dir.mkdir(parents=True, exist_ok=True)
         self.images_dir.mkdir(parents=True, exist_ok=True)
 
         self.logger.info(f"Created query directory: {self.current_query_dir}")
         return self.current_query_dir
 
-    def search(self, keywords: List[str], max_items: int = DEFAULT_MAX_ITEMS) -> List[Dict]:
+    def search(
+        self,
+        keywords: List[str],
+        max_items: int = DEFAULT_MAX_ITEMS,
+        scraped_dir: Optional[Path] = None,
+        images_dir: Optional[Path] = None,
+        query_dir: Optional[Path] = None,
+        date_override: Optional[str] = None,
+    ) -> List[Dict]:
         """Search posts by keywords"""
         query_name = "_".join(keywords)
         print(f"\n🔍 Searching for: {', '.join(keywords)}")
         print(f"   Max items: {max_items}")
 
         # Setup directory for this query
-        self.setup_query_directory(query_name)
+        self.setup_query_directory(
+            query_name,
+            scraped_dir=scraped_dir,
+            images_dir=images_dir,
+            query_dir=query_dir,
+            date_override=date_override,
+        )
 
         run_input = {
             "mode": "search",
@@ -367,7 +419,11 @@ def main():
     search_parser.add_argument('-d', '--download', action='store_true',
                               help='Download images')
     search_parser.add_argument('--max-downloads', type=int,
-                              help='Max images to download')
+                              help='Max images to download (default: unlimited)')
+    search_parser.add_argument('--scraped-dir', help='Directory to store raw scraped JSON files')
+    search_parser.add_argument('--images-dir', help='Directory to store downloaded images')
+    search_parser.add_argument('--query-dir', help='Workflow query directory (parent of step outputs)')
+    search_parser.add_argument('--date', help='Override YYYYMMDD date for standalone runs')
 
     # Comments command
     comments_parser = subparsers.add_parser('comments', help='Get comments')
@@ -401,7 +457,14 @@ def main():
 
     # Execute commands
     if args.command == 'search':
-        results = scraper.search(args.keywords, args.max_items)
+        results = scraper.search(
+            args.keywords,
+            max_items=args.max_items,
+            scraped_dir=Path(args.scraped_dir) if args.scraped_dir else None,
+            images_dir=Path(args.images_dir) if args.images_dir else None,
+            query_dir=Path(args.query_dir) if args.query_dir else None,
+            date_override=args.date,
+        )
 
         if args.download and results:
             images = scraper.extract_image_urls(results)
