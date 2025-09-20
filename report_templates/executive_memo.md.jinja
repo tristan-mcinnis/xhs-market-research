@@ -1,0 +1,33 @@
+{% set meta = metadata %}
+# {{ meta.title }} — Executive Memo
+
+**Prepared for:** Leadership stakeholders  \
+**Topic:** {{ meta.query or 'n/a' }}  \
+**Generated:** {{ meta.generated_at }}  \
+**Workflow Directory:** {{ meta.workflow_dir }}
+
+{% if warnings %}
+> **Build Warnings**
+{% for item in warnings %}
+> - {{ item }}
+{% endfor %}
+{% endif %}
+
+{% for key, section in sections.items() %}
+## {{ section.title }}
+{{ section.body | default('_No content available._') }}
+{% endfor %}
+
+{% if assets %}
+## Reference Packet
+Supporting files live in `assets/` for direct Mac hand-off:
+{% for key, asset in assets.items() if asset.in_bundle %}
+- **{{ asset.title or key }}** — {{ asset.description or 'Supporting material' }} ({{ asset.relative_path or asset.filename }})
+{% endfor %}
+{% if meta.asset_bundle %}
+- Combined ZIP archive: `{{ meta.asset_bundle }}`
+{% endif %}
+{% endif %}
+
+---
+_Built via Xiaohongshu market research pipeline._

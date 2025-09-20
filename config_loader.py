@@ -98,8 +98,20 @@ class PipelineConfig:
         return self.config.get('comparative_analysis_config', {})
 
     def get_visualization_config(self) -> Dict[str, Any]:
-        """Get visualization configuration"""
+        """Get visualization configuration""" 
         return self.config.get('visualization_config', {})
+
+    def get_report_templates(self) -> Dict[str, Any]:
+        """Return configured report templates"""
+        return self.config.get('report_templates', {})
+
+    def get_report_template(self, name: str) -> Dict[str, Any]:
+        """Return a single report template configuration"""
+        templates = self.get_report_templates()
+        if name not in templates:
+            available = ", ".join(sorted(templates.keys())) or "<none>"
+            raise KeyError(f"Report template '{name}' not found. Available: {available}")
+        return templates[name]
 
     def update_prompt(self, step: str, prompt_name: str, new_prompt: str):
         """
