@@ -83,6 +83,53 @@ After running, check these files:
    - `trend_radar.png` - Adoption vs Distinctiveness analysis
    - `brand_playbook.csv` - Strategic recommendations
 
+## 🧾 Final Report Builder
+
+Turn the downstream artifacts into polished deliverables without rerunning upstream steps.
+
+```bash
+# Regenerate an SCQA narrative with Markdown + DOCX
+python final_report_builder.py --workflow data/20241010/coffee_flavor --template scqa --deliverable docx
+
+# Executive memo with both formats (default)
+python final_report_builder.py --workflow latest --template executive_memo
+
+# Social-ready LinkedIn brief
+python final_report_builder.py --workflow data/20241010/coffee_flavor --template linkedin_brief --deliverable md
+```
+
+### Templates & Customisation
+
+- Templates live in `report_templates/` (`scqa.md.jinja`, `executive_memo.md.jinja`, `linkedin_brief.md.jinja`).
+- Each template is registered in `pipeline_config.json > report_templates`; edit the section/asset mappings to pull in different insights, themes, or visuals.
+- Add new templates by copying a Jinja file and wiring a new entry into `report_templates` (point the `template_path`, `sections`, and `assets` accordingly).
+- The builder renders Markdown with Jinja2 and, if [Pandoc](https://pandoc.org/installing.html) is available, exports a `.docx` that drops cleanly into Mac Pages or Keynote workflows.
+
+### Embedded Visuals & Asset Bundles
+
+- Semiotic atlas, radar PNGs, and the brand playbook CSV are copied into `final_reports/<template>/<timestamp>/assets/` for direct Keynote/Pages hand-off.
+- An `assets_bundle.zip` is produced alongside the report so you can AirDrop a single archive to collaborators.
+- Missing files degrade gracefully—the script logs warnings yet still produces the Markdown deliverable.
+
+### Output Structure
+
+```
+data/20241010/coffee_flavor/
+└── final_reports/
+    └── scqa/
+        └── 20241012_153000/
+            ├── report.md
+            ├── report.docx        # if Pandoc is installed
+            ├── report_metadata.json
+            ├── assets/
+            │   ├── semiotic_atlas.png
+            │   ├── trend_radar.png
+            │   └── brand_playbook.csv
+            └── assets_bundle.zip
+```
+
+> **Tip for Mac users:** install Pandoc via `brew install pandoc` so the DOCX export is always available.
+
 ## 🔧 Configuration
 
 ### Centralized Prompts & Settings
