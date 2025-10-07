@@ -10,6 +10,8 @@ const CONFIG = {
     // Generate with: echo -n "your_password" | shasum -a 256
     // Or use: https://emn178.github.io/online-tools/sha256.html
     passwordHash: '6fd4add0da2d3092c5c8c9b7831762d68ce767070d48ae33934c6a41f9f1c7bb', // Default: "password"
+    // GitHub PAT - WARNING: Visible in page source! Password provides basic protection.
+    githubToken: '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',
 };
 
 // State
@@ -114,7 +116,7 @@ document.getElementById('scraper-form').addEventListener('submit', async (e) => 
 
 // Trigger GitHub Actions workflow
 async function triggerWorkflow(inputs) {
-    const token = document.getElementById('github-token').value || null;
+    const token = document.getElementById('github-token').value || CONFIG.githubToken;
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/actions/workflows/${CONFIG.workflowFileName}/dispatches`;
 
     const headers = {
@@ -122,7 +124,7 @@ async function triggerWorkflow(inputs) {
         'Content-Type': 'application/json',
     };
 
-    if (token) {
+    if (token && token !== 'REPLACE_WITH_YOUR_TOKEN') {
         headers['Authorization'] = `token ${token}`;
     }
 
@@ -153,14 +155,14 @@ async function triggerWorkflow(inputs) {
 
 // Get latest workflow run
 async function getLatestWorkflowRun() {
-    const token = document.getElementById('github-token').value || null;
+    const token = document.getElementById('github-token').value || CONFIG.githubToken;
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/actions/workflows/${CONFIG.workflowFileName}/runs?per_page=1`;
 
     const headers = {
         'Accept': 'application/vnd.github.v3+json',
     };
 
-    if (token) {
+    if (token && token !== 'REPLACE_WITH_YOUR_TOKEN') {
         headers['Authorization'] = `token ${token}`;
     }
 
@@ -213,14 +215,14 @@ function startPolling(runId) {
 
 // Check workflow status
 async function checkWorkflowStatus(runId) {
-    const token = document.getElementById('github-token').value || null;
+    const token = document.getElementById('github-token').value || CONFIG.githubToken;
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/actions/runs/${runId}`;
 
     const headers = {
         'Accept': 'application/vnd.github.v3+json',
     };
 
-    if (token) {
+    if (token && token !== 'REPLACE_WITH_YOUR_TOKEN') {
         headers['Authorization'] = `token ${token}`;
     }
 
@@ -265,14 +267,14 @@ async function handleWorkflowCompletion(status) {
 
 // Get workflow artifacts
 async function getWorkflowArtifacts(runId) {
-    const token = document.getElementById('github-token').value || null;
+    const token = document.getElementById('github-token').value || CONFIG.githubToken;
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/actions/runs/${runId}/artifacts`;
 
     const headers = {
         'Accept': 'application/vnd.github.v3+json',
     };
 
-    if (token) {
+    if (token && token !== 'REPLACE_WITH_YOUR_TOKEN') {
         headers['Authorization'] = `token ${token}`;
     }
 
