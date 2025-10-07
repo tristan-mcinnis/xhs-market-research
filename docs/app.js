@@ -11,7 +11,7 @@ const CONFIG = {
     // Or use: https://emn178.github.io/online-tools/sha256.html
     passwordHash: '6fd4add0da2d3092c5c8c9b7831762d68ce767070d48ae33934c6a41f9f1c7bb', // Default: "password"
     // GitHub fine-grained PAT - Only has access to this repository
-    githubToken: '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',
+    githubToken: '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',
 };
 
 // State
