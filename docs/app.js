@@ -10,8 +10,8 @@ const CONFIG = {
     // Generate with: echo -n "your_password" | shasum -a 256
     // Or use: https://emn178.github.io/online-tools/sha256.html
     passwordHash: '6fd4add0da2d3092c5c8c9b7831762d68ce767070d48ae33934c6a41f9f1c7bb', // Default: "password"
-    // GitHub PAT - WARNING: Visible in page source! Password provides basic protection.
-    githubToken: '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',
+    // GitHub fine-grained PAT - Only has access to this repository
+    githubToken: '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',
 };
 
 // State
