@@ -73,4 +73,4 @@ git push
 
 ---
 
-For detailed documentation, see `CLAUDE.md` and `TEAM_GUIDE.md`.
+For detailed documentation, see `CLAUDE.md`.
