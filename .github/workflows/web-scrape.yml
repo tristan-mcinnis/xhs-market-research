@@ -1,0 +1,223 @@
+name: Web Scraper
+
+on:
+  workflow_dispatch:
+    inputs:
+      keywords:
+        description: 'Search keywords (space-separated)'
+        required: true
+        type: string
+      max_items:
+        description: 'Maximum items to scrape'
+        required: false
+        default: '30'
+        type: string
+      max_downloads:
+        description: 'Maximum images to download (0 = unlimited)'
+        required: false
+        default: '0'
+        type: string
+      download_images:
+        description: 'Download images (true/false)'
+        required: false
+        default: 'true'
+        type: string
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
+          APIFY_ACTOR_ID: watk8sVZNzd40UtbQ
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+        run: |
+          # Build command based on inputs
+          CMD="python xhs_scraper.py search ${{ inputs.keywords }}"
+          CMD="$CMD --max-items ${{ inputs.max_items }}"
+
+          # Add download flag if enabled
+          if [ "${{ inputs.download_images }}" = "true" ]; then
+            CMD="$CMD --download"
+
+            # Add max downloads if specified
+            if [ "${{ inputs.max_downloads }}" != "0" ]; then
+              CMD="$CMD --max-downloads ${{ inputs.max_downloads }}"
+            fi
+          fi
+
+          echo "Running: $CMD"
+          eval $CMD
+
+      - name: Prepare results
+        run: |
+          # Create output directory
+          mkdir -p output
+
+          # Find the latest data directory
+          LATEST_DIR=$(find data -type d -name "*" | sort -r | head -n 1)
+
+          if [ -d "$LATEST_DIR" ]; then
+            echo "Packing results from: $LATEST_DIR"
+
+            # Copy scraped JSON
+            if [ -d "$LATEST_DIR/scraped" ]; then
+              cp -r "$LATEST_DIR/scraped" output/
+            fi
+
+            # Copy images if they exist
+            if [ -d "$LATEST_DIR/images" ]; then
+              cp -r "$LATEST_DIR/images" output/
+            fi
+
+            # Create summary file
+            echo "Scrape Results" > output/SUMMARY.txt
+            echo "==============" >> output/SUMMARY.txt
+            echo "" >> output/SUMMARY.txt
+            echo "Keywords: ${{ inputs.keywords }}" >> output/SUMMARY.txt
+            echo "Max Items: ${{ inputs.max_items }}" >> output/SUMMARY.txt
+            echo "Download Images: ${{ inputs.download_images }}" >> output/SUMMARY.txt
+            echo "Timestamp: $(date)" >> output/SUMMARY.txt
+            echo "" >> output/SUMMARY.txt
+            echo "Files:" >> output/SUMMARY.txt
+            ls -lh output/ >> output/SUMMARY.txt
+
+            # Count results
+            if [ -d "output/scraped" ]; then
+              echo "" >> output/SUMMARY.txt
+              echo "Scraped files:" >> output/SUMMARY.txt
+              ls output/scraped/ >> output/SUMMARY.txt
+            fi
+
+            if [ -d "output/images" ]; then
+              echo "" >> output/SUMMARY.txt
+              echo "Downloaded images: $(ls output/images/ | wc -l)" >> output/SUMMARY.txt
+            fi
+          else
+            echo "No results found"
+            echo "No results were generated" > output/ERROR.txt
+          fi
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scrape-results-${{ github.run_number }}
+          path: output/
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Display summary
+        run: |
+          if [ -f "output/SUMMARY.txt" ]; then
+            cat output/SUMMARY.txt
+          else
+            echo "No summary available"
+          fi
+
+      - name: Update audit log
+        run: |
+          # Create audit log entry
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          # Count results
+          POSTS_COUNT=0
+          IMAGES_COUNT=0
+          if [ -d "output/scraped" ]; then
+            POSTS_COUNT=$(find output/scraped -name "*.json" -exec jq 'length' {} \; 2>/dev/null | awk '{s+=$1} END {print s}' || echo 0)
+          fi
+          if [ -d "output/images" ]; then
+            IMAGES_COUNT=$(ls output/images/ 2>/dev/null | wc -l | tr -d ' ')
+          fi
+
+          # Create audit entry JSON
+          cat > audit_entry.json << EOF
+          {
+            "timestamp": "$TIMESTAMP",
+            "run_id": "${{ github.run_id }}",
+            "run_number": "${{ github.run_number }}",
+            "keywords": "${{ inputs.keywords }}",
+            "max_items": ${{ inputs.max_items }},
+            "max_downloads": ${{ inputs.max_downloads }},
+            "download_images": ${{ inputs.download_images }},
+            "posts_scraped": ${POSTS_COUNT},
+            "images_downloaded": ${IMAGES_COUNT},
+            "status": "success",
+            "run_url": "$RUN_URL"
+          }
+          EOF
+
+          # Initialize audit log if it doesn't exist
+          if [ ! -f "docs/audit.json" ]; then
+            echo "[]" > docs/audit.json
+          fi
+
+          # Append new entry to audit log (prepend to show latest first)
+          jq ". = [$(cat audit_entry.json)] + ." docs/audit.json > docs/audit.json.tmp
+          mv docs/audit.json.tmp docs/audit.json
+
+          # Configure git
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          # Commit and push audit log
+          git add docs/audit.json
+          git diff-index --quiet HEAD || git commit -m "📊 Audit: ${{ inputs.keywords }} ($TIMESTAMP)"
+          git push
+
+      - name: Update audit log on failure
+        if: failure()
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          cat > audit_entry.json << EOF
+          {
+            "timestamp": "$TIMESTAMP",
+            "run_id": "${{ github.run_id }}",
+            "run_number": "${{ github.run_number }}",
+            "keywords": "${{ inputs.keywords }}",
+            "max_items": ${{ inputs.max_items }},
+            "max_downloads": ${{ inputs.max_downloads }},
+            "download_images": ${{ inputs.download_images }},
+            "posts_scraped": 0,
+            "images_downloaded": 0,
+            "status": "failed",
+            "run_url": "$RUN_URL"
+          }
+          EOF
+
+          if [ ! -f "docs/audit.json" ]; then
+            echo "[]" > docs/audit.json
+          fi
+
+          jq ". = [$(cat audit_entry.json)] + ." docs/audit.json > docs/audit.json.tmp
+          mv docs/audit.json.tmp docs/audit.json
+
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add docs/audit.json
+          git diff-index --quiet HEAD || git commit -m "📊 Audit: ${{ inputs.keywords }} - FAILED ($TIMESTAMP)"
+          git push || true
