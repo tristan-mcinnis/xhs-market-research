@@ -26,27 +26,35 @@ except ImportError:
     print("Or manually: pip install apify-client requests python-dotenv")
     sys.exit(1)
 
-try:
-    from config_loader import get_config
-except ImportError:
-    print("Error: Unable to import configuration loader (config_loader.py).")
-    sys.exit(1)
-
 # Load environment variables
 load_dotenv()
 
-# Load configuration
-config = get_config()
+# Load configuration from pipeline_config.json
+def load_config():
+    """Load configuration from pipeline_config.json"""
+    config_path = Path(__file__).parent / "pipeline_config.json"
+    try:
+        with open(config_path, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("Warning: pipeline_config.json not found. Using defaults.")
+        return {}
+    except json.JSONDecodeError:
+        print("Warning: Invalid JSON in pipeline_config.json. Using defaults.")
+        return {}
 
-# Configuration
-APIFY_API_TOKEN = os.getenv("APIFY_API_TOKEN") or config.get_api_config("apify_api_token", "")
-ACTOR_ID = config.get_api_config("actor_id", "watk8sVZNzd40UtbQ")
+config = load_config()
 
-# Default settings (centralized via pipeline_config.json)
-DEFAULT_MAX_ITEMS = config.get_pipeline_setting("default_max_items", 30)
-DEFAULT_BASE_DIR = Path(config.get_pipeline_setting("default_output_dir", "data"))
-REQUEST_DELAY = config.get_pipeline_setting("request_delay", 0.5)
-TIMEOUT = config.get_pipeline_setting("timeout", 10)
+# Configuration from environment variables
+APIFY_API_TOKEN = os.getenv("APIFY_API_TOKEN", "")
+ACTOR_ID = os.getenv("APIFY_ACTOR_ID", "watk8sVZNzd40UtbQ")
+
+# Default settings from config file
+pipeline_settings = config.get("pipeline_settings", {})
+DEFAULT_MAX_ITEMS = pipeline_settings.get("default_max_items", 30)
+DEFAULT_BASE_DIR = Path(pipeline_settings.get("default_output_dir", "data"))
+REQUEST_DELAY = pipeline_settings.get("request_delay", 0.5)
+TIMEOUT = pipeline_settings.get("timeout", 10)
 
 # Image download headers
 HEADERS = {

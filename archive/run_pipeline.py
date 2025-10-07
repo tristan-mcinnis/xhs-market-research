@@ -101,7 +101,7 @@ class PipelineRunner:
         # Check for Python packages
         required_packages = [
             'apify_client', 'requests', 'pandas', 'numpy',
-            'scikit-learn', 'sentence_transformers', 'matplotlib', 'openai'
+            'sklearn', 'sentence_transformers', 'matplotlib', 'openai'
         ]
 
         missing_packages = []
@@ -289,6 +289,10 @@ class PipelineRunner:
 
         # Generate final report
         self.generate_report()
+
+        # Consolidate outputs into single directory
+        self.consolidate_outputs()
+
         return True
 
     def generate_report(self):
@@ -324,6 +328,15 @@ class PipelineRunner:
                     f.write(f"- {name}: `{path}`\n")
 
         print(f"\n📊 Report saved to: {report_path}")
+
+    def consolidate_outputs(self):
+        """Consolidate all outputs into a single directory"""
+        try:
+            from consolidate_outputs import consolidate_workflow_outputs
+            consolidated_dir = consolidate_workflow_outputs(self.config.query_dir)
+            print(f"\n📁 Outputs consolidated to: {consolidated_dir}")
+        except Exception as e:
+            print(f"\n⚠️  Could not consolidate outputs: {e}")
 
 
 def main():

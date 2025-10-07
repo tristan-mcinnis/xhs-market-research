@@ -37,11 +37,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # -----------------------------
 
 CANON_SECTIONS = {
-    "VISUAL CODES": "VISUAL CODES",
-    "CULTURAL MEANING": "CULTURAL MEANING",
-    "TABOO NAVIGATION": "TABOO NAVIGATION",
-    "PLATFORM CONVENTIONS": "PLATFORM CONVENTIONS",
-    "CONSUMER PSYCHOLOGY": "CONSUMER PSYCHOLOGY",
+    "CONSUMER BEHAVIOR": "CONSUMER BEHAVIOR",
+    "MARKET SIGNALS": "MARKET SIGNALS",
+    "BRAND TOUCHPOINTS": "BRAND TOUCHPOINTS",
+    "COMPETITIVE LANDSCAPE": "COMPETITIVE LANDSCAPE",
+    "PURCHASE DRIVERS": "PURCHASE DRIVERS",
 }
 
 # Default filename-based groups; override with --group-map
@@ -189,6 +189,12 @@ def tfidf_group_contrast(docs_by_group: Dict[str, List[str]], top_k: int) -> Dic
             continue
         X_g = X[a:b]
         X_rest = X[np.r_[0:a, b:X.shape[0]]]
+
+        # Skip if no comparison group
+        if X_rest.shape[0] == 0:
+            result[g] = []
+            continue
+
         mean_g = np.asarray(X_g.mean(axis=0)).ravel()
         mean_rest = np.asarray(X_rest.mean(axis=0)).ravel()
         ratio = (mean_g + eps) / (mean_rest + eps)
@@ -250,8 +256,14 @@ def main():
     for g, items in contrast.items():
         for term, ratio in items:
             contrast_rows.append({"group": g, "term": term, "salience_ratio": ratio})
-    contrast_df = pd.DataFrame(contrast_rows).sort_values(["group", "salience_ratio"], ascending=[True, False])
-    contrast_df.to_csv(out_dir / "differential_salience_by_group.csv", index=False)
+
+    if contrast_rows:
+        contrast_df = pd.DataFrame(contrast_rows).sort_values(["group", "salience_ratio"], ascending=[True, False])
+        contrast_df.to_csv(out_dir / "differential_salience_by_group.csv", index=False)
+    else:
+        # Create empty DataFrame with proper columns
+        contrast_df = pd.DataFrame(columns=["group", "term", "salience_ratio"])
+        contrast_df.to_csv(out_dir / "differential_salience_by_group.csv", index=False)
 
     # ---------- Console summaries ----------
     def print_table(title: str, rows: pd.DataFrame, key_cols: List[str], value_col: str, top_n: int = 10):

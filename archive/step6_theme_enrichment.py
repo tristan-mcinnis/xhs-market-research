@@ -218,7 +218,8 @@ def generate_synthesis(client: OpenAI, themes: List[Dict], out_dir: Path) -> str
         'step6_theme_enrichment',
         'synthesis_prompt_template',
         theme_count=len(themes),
-        themes_text=themes_text
+        themes_text=themes_text,
+        topic="pet travel"  # Add default topic
     )
 
     try:

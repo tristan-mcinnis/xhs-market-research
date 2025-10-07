@@ -206,7 +206,8 @@ def extract_section_insights(client: OpenAI, section_name: str, section_texts: L
         'section_insights_prompt_template',
         section_name=section_name,
         doc_count=len(section_texts),
-        combined_content=combined_content
+        combined_content=combined_content,
+        topic="pet travel"  # Add default topic
     )
 
     try:
@@ -257,7 +258,8 @@ def generate_master_codebook(client: OpenAI, all_insights: List[Dict], out_dir: 
     synthesis_prompt = config.get_prompt(
         'step5_insight_extraction',
         'master_codebook_prompt_template',
-        insights_text=insights_text
+        insights_text=insights_text,
+        topic="pet travel"  # Add default topic
     )
 
     try:
